@@ -1,0 +1,32 @@
+{
+  "linhas_raw": {
+    "compras": 2042,
+    "itens": 7077,
+    "resultados": 15896
+  },
+  "sem_resultado_flag_raw": 852,
+  "resultados_cancelados": 62,
+  "itens_com_resultado": 6225,
+  "itens_sem_resultado": 852,
+  "rejeitados_primeiro_motivo": {
+    "Total estimado menor que um real": 59,
+    "Unitario estimado ausente ou nao positivo": 23,
+    "Homologado acima de mil vezes estimado": 7,
+    "Unitario homologado ausente ou nao positivo": 6,
+    "Total acima de um trilhao": 3,
+    "Quantidade ausente ou nao positiva": 1
+  },
+  "itens_rejeitados": 99,
+  "homologacoes_anteriores_publicacao": 230,
+  "itens_documento_fornecedor_ausente": 0,
+  "dimensoes": {
+    "dim_orgao": 363,
+    "dim_fornecedor": 2652,
+    "dim_modalidade": 7,
+    "dim_localidade": 27
+  },
+  "itens_fato": 6126,
+  "contratacoes": 1962,
+  "itens_comparaveis": 5457,
+  "itens_sem_ciclo": 230
+}

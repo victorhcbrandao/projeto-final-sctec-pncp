@@ -1,6 +1,8 @@
 """Transformação dos três CSVs em fato e quatro dimensões."""
 
 import pandas as pd
+import json
+from collections import Counter
 
 from src import config, limpeza
 
@@ -22,6 +24,10 @@ def ler(nome):
 
 def main():
     compras, itens, resultados = ler("compras"), ler("itens"), ler("resultados")
+    auditoria = {"linhas_raw": {"compras": len(compras), "itens": len(itens), "resultados": len(resultados)}}
+    assert not compras.duplicated("numero_controle_pncp").any(), "Contratacao duplicada"
+    assert not itens.duplicated(["numero_controle_pncp", "numero_item"]).any(), "Item duplicado"
+    auditoria["sem_resultado_flag_raw"] = int((itens["tem_resultado"].str.lower() != "true").sum())
     print(f"Linhas lidas: compras={len(compras)}  itens={len(itens)}  resultados={len(resultados)}   (prova real: 2042 / 7077 / 15896)")
 
     # =========================================================================================
@@ -65,6 +71,7 @@ def main():
     # =========================================================================================
     # ETAPA 2 - UM VENCEDOR POR ITEM  (regra 2)
     # =========================================================================================
+    auditoria["resultados_cancelados"] = int(resultados["cancelado"].sum())
     resultados = resultados[~resultados["cancelado"]].copy()
     resultados["ordem"] = pd.to_numeric(resultados["ordem_classificacao_srp"], errors="coerce").fillna(1)
     resultados["sequencial"] = pd.to_numeric(resultados["sequencial_resultado"], errors="coerce").fillna(1)
@@ -76,9 +83,11 @@ def main():
     # ETAPA 3 - JUNTAR OS 3 ARQUIVOS: SO ENTRAM ITENS COM RESULTADO  (regra 3)
     # =========================================================================================
     # merge junta tabelas pelas colunas em comum. how="inner" fica so com o que existe nos DOIS lados.
-    fato = itens.merge(resultados, on=["numero_controle_pncp", "numero_item"], how="inner")
-    fato = fato.merge(compras, on="numero_controle_pncp")
+    fato = itens.merge(resultados, on=["numero_controle_pncp", "numero_item"], how="inner", validate="one_to_one")
+    fato = fato.merge(compras, on="numero_controle_pncp", validate="many_to_one")
     print(f"Itens com resultado, antes de rejeitar: {len(fato)}")
+    auditoria["itens_com_resultado"] = len(fato)
+    auditoria["itens_sem_resultado"] = len(itens) - len(fato)
 
     # =========================================================================================
     # ETAPA 4 - VALORES  (regra 5)
@@ -104,6 +113,21 @@ def main():
         | (hom > 1000 * est)
         | (est > 1e12) | (hom > 1e12)                      # valores acima de R$ 1 trilhao (estouram o DECIMAL do banco)
     )
+    motivos = pd.Series("", index=fato.index)
+    regras = [
+        ("Quantidade ausente ou nao positiva", ~(fato["quantidade"] > 0)),
+        ("Unitario estimado ausente ou nao positivo", ~(fato["valor_unitario_estimado"] > 0)),
+        ("Unitario homologado ausente ou nao positivo", ~(fato["valor_unitario_homologado"] > 0)),
+        ("Orcamento sigiloso", fato["sigiloso"]),
+        ("Total estimado menor que um real", est < 1),
+        ("Homologado acima de mil vezes estimado", hom > 1000 * est),
+        ("Total acima de um trilhao", (est > 1e12) | (hom > 1e12)),
+    ]
+    for motivo, condicao in regras:
+        motivos.loc[(motivos == "") & condicao] = motivo
+    assert ((motivos != "") == rejeitado).all()
+    auditoria["rejeitados_primeiro_motivo"] = {k: int(v) for k,v in motivos[motivos != ""].value_counts().items()}
+    auditoria["itens_rejeitados"] = int(rejeitado.sum())
     print(f"Itens rejeitados (nao entram na fato): {rejeitado.sum()}   (prova real: 99)")
     fato = fato[~rejeitado].copy()
 
@@ -115,7 +139,7 @@ def main():
     # Comparavel = NAO e Credenciamento (modalidade 12) E a razao homologado/estimado esta entre 0,1 e 10.
     fato["comparavel"] = ((fato["modalidade_id"] != 12) & razao.between(0.1, 10)).astype(int)
     # Economia = estimado - homologado, so nos itens comparaveis (nos demais vale 0)
-    fato["economia_valor"] = (est - hom).where(fato["comparavel"] == 1, 0.0).round(2)
+    fato["economia_valor"] = (est - hom).where(fato["comparavel"] == 1).round(2)
 
     # =========================================================================================
     # ETAPA 7 - CRONOLOGIA  (regra 7)
@@ -123,6 +147,7 @@ def main():
     fato["data_homologacao"] = fato["data_resultado"]
     # Homologar ANTES de publicar e impossivel: a data de homologacao vira vazia (o item continua na fato)
     antes = fato["data_homologacao"] < fato["data_publicacao"]
+    auditoria["homologacoes_anteriores_publicacao"] = int(antes.sum())
     fato.loc[antes, "data_homologacao"] = None
     # ciclo = dias entre a publicacao e a homologacao (so quando existe homologacao)
     fato["dias_ciclo"] = [(h - p).days if h is not None and not pd.isna(h) else None
@@ -146,6 +171,7 @@ def main():
     dim_orgao = fato.drop_duplicates("cnpj_orgao")[["cnpj_orgao", "nome_orgao", "poder"]].reset_index(drop=True)
     dim_orgao.insert(0, "sk_orgao", dim_orgao.index + 1)
 
+    auditoria["itens_documento_fornecedor_ausente"] = int(fato["ni_fornecedor"].isna().sum())
     fato["ni_fornecedor"] = fato["ni_fornecedor"].fillna("NAO-INFORMADO")
     dim_fornecedor = fato.drop_duplicates("ni_fornecedor")[["ni_fornecedor", "nome_fornecedor", "tipo_pessoa", "porte"]].reset_index(drop=True)
     dim_fornecedor.insert(0, "sk_fornecedor", dim_fornecedor.index + 1)
@@ -153,6 +179,21 @@ def main():
     dim_modalidade.insert(0, "sk_modalidade", dim_modalidade.index + 1)
     dim_localidade = fato.drop_duplicates("uf_sigla")[["uf_sigla", "uf_nome", "regiao"]].reset_index(drop=True)
     dim_localidade.insert(0, "sk_localidade", dim_localidade.index + 1)
+
+    # Chaves desconhecidas usam -1, como pede a secao 4.3. Nao sao criadas sem necessidade.
+    for dim, chave, sk in [(dim_orgao, "cnpj_orgao", "sk_orgao"), (dim_fornecedor, "ni_fornecedor", "sk_fornecedor"),
+                           (dim_modalidade, "modalidade_id", "sk_modalidade"), (dim_localidade, "uf_sigla", "sk_localidade")]:
+        missing = dim[chave].isna() | (dim[chave] == "NAO-INFORMADO")
+        if missing.any():
+            dim.loc[missing, sk] = -1
+            if dim[chave].dtype == object:
+                dim.loc[missing, chave] = "NAO-INFORMADO"
+                fato[chave] = fato[chave].fillna("NAO-INFORMADO")
+            else:
+                dim.loc[missing, chave] = -1
+                fato[chave] = fato[chave].fillna(-1)
+            for col in dim.columns:
+                if col not in [sk,chave]: dim.loc[missing,col] = "Não informado"
 
     # Troca a chave natural (CNPJ, sigla...) pela chave substituta (sk_) dentro da fato.
     # dict(zip(a, b)) monta um dicionario {chave natural: sk}; .map usa esse dicionario para trocar os valores.
@@ -165,6 +206,16 @@ def main():
                "valor_unitario_estimado", "valor_total_estimado", "valor_unitario_homologado", "valor_total_homologado",
                "comparavel", "economia_valor", "dias_ciclo"]
     fato = fato[colunas]
+    fato["dias_ciclo"] = fato["dias_ciclo"].astype("Int64")
+    assert not fato[["sk_orgao","sk_fornecedor","sk_modalidade","sk_localidade"]].isna().any().any()
+    assert not fato.duplicated(["numero_controle_pncp", "numero_item"]).any()
+    auditoria["dimensoes"] = {n:len(t) for n,t in [("dim_orgao",dim_orgao),("dim_fornecedor",dim_fornecedor),("dim_modalidade",dim_modalidade),("dim_localidade",dim_localidade)]}
+    auditoria["itens_fato"] = len(fato)
+    auditoria["contratacoes"] = int(fato["numero_controle_pncp"].nunique())
+    auditoria["itens_comparaveis"] = int(fato["comparavel"].sum())
+    auditoria["itens_sem_ciclo"] = int(fato["dias_ciclo"].isna().sum())
+    config.PASTA_REPORTS.mkdir(exist_ok=True)
+    (config.PASTA_REPORTS / "auditoria_pipeline.json").write_text(json.dumps(auditoria,ensure_ascii=False,indent=2),encoding="utf-8")
 
     # =========================================================================================
     # ETAPA 10 - SALVAR E CONFERIR (pronto)

@@ -1,88 +1,44 @@
-"""
-banco.py  -  conexao e utilitarios do PostgreSQL
-------------------------------------------------
-Mesmo papel do banco.py dos projetos anteriores: abrir conexao, executar SQL e
-inserir em lote. Acrescenta recriar_banco() (o CREATE DATABASE do PostgreSQL
-precisa de autocommit e de uma conexao em OUTRO banco) e executar_script() para
-rodar os arquivos da pasta sql/.
-"""
-
-import re
-
+"""Acesso PostgreSQL. Transacoes sao controladas pelo chamador."""
 import psycopg2
-from psycopg2 import Error, sql
+from psycopg2 import sql
 from psycopg2.extras import execute_values
-
 from src import config
 
-
 def conectar(database=None):
-    """Abre a conexao no banco do projeto (ou em 'database', se informado)."""
     try:
-        return psycopg2.connect(dbname=database or config.PG_DATABASE, **config.PG_CONFIG)
-    except Error as erro:
-        raise RuntimeError(
-            f"Nao foi possivel conectar ao PostgreSQL em {config.PG_CONFIG['host']}:{config.PG_CONFIG['port']}. "
-            f"Confira o arquivo .env e se o servico esta no ar. Detalhe: {erro}"
-        )
+        return psycopg2.connect(dbname=database or config.PG_DATABASE, connect_timeout=10, **config.PG_CONFIG)
+    except psycopg2.Error as exc:
+        raise RuntimeError("Falha de conexao. Confira servico, usuario, porta e senha no .env local.") from exc
 
-
-def recriar_banco():
-    """DROP + CREATE DATABASE (conecta no banco administrativo 'postgres')."""
+def preparar_banco(recriar=False):
+    if config.PG_DATABASE in {"postgres", "template0", "template1"}:
+        raise ValueError("Escolha um banco de projeto, nao um banco administrativo.")
     con = conectar("postgres")
-    con.autocommit = True
-    cur = con.cursor()
-    nome = sql.Identifier(config.PG_DATABASE)
-    # encerra sessoes abertas no banco, senao o DROP falha
-    cur.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = %s AND pid <> pg_backend_pid()",
-                (config.PG_DATABASE,))
-    cur.execute(sql.SQL("DROP DATABASE IF EXISTS {}").format(nome))
-    cur.execute(sql.SQL("CREATE DATABASE {} ENCODING 'UTF8' TEMPLATE template0").format(nome))
-    cur.close()
-    con.close()
-
-
-def _separar_comandos(texto):
-    """Quebra um script .sql em comandos (remove comentarios '-- ...' e separa por ';')."""
-    sem_comentarios = re.sub(r"--[^\n]*", "", texto)
-    return [c.strip() for c in sem_comentarios.split(";") if c.strip()]
-
+    try:
+        con.autocommit = True
+        with con.cursor() as cur:
+            cur.execute("SELECT 1 FROM pg_database WHERE datname=%s", (config.PG_DATABASE,))
+            existe = cur.fetchone() is not None
+            if existe and not recriar:
+                raise RuntimeError("Banco ja existe. Para apaga-lo e reconstruir conscientemente, use --recriar.")
+            if existe:
+                cur.execute("SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname=%s AND pid<>pg_backend_pid()", (config.PG_DATABASE,))
+                cur.execute(sql.SQL("DROP DATABASE {}").format(sql.Identifier(config.PG_DATABASE)))
+            cur.execute(sql.SQL("CREATE DATABASE {} ENCODING 'UTF8' TEMPLATE template0").format(sql.Identifier(config.PG_DATABASE)))
+    finally:
+        con.close()
 
 def executar_script(conexao, caminho):
-    cursor = conexao.cursor()
-    for comando in _separar_comandos(caminho.read_text(encoding="utf-8")):
-        cursor.execute(comando)
-    conexao.commit()
-    cursor.close()
-
-
-def executar(conexao, comando, params=None):
-    cursor = conexao.cursor()
-    cursor.execute(comando, params)
-    conexao.commit()
-    cursor.close()
-
+    with conexao.cursor() as cur:
+        cur.execute(caminho.read_text(encoding="utf-8"))
 
 def consultar(conexao, comando, params=None):
-    """SELECT -> lista de tuplas."""
-    cursor = conexao.cursor()
-    cursor.execute(comando, params)
-    linhas = cursor.fetchall()
-    cursor.close()
-    return linhas
+    with conexao.cursor() as cur:
+        cur.execute(comando, params)
+        return cur.fetchall()
 
-
-def inserir_em_lote(conexao, sql_insert, linhas):
-    """Insere varias linhas de uma vez.
-
-    'sql_insert' vem no formato  INSERT INTO t (a,b) VALUES (%s, %s)
-    e e convertido para o formato do execute_values (VALUES %s), que envia
-    o lote inteiro em UM comando (muito mais rapido que executemany).
-    """
-    if not linhas:
-        return
-    base = re.sub(r"VALUES\s*\(.*\)\s*$", "VALUES %s", sql_insert, flags=re.S)
-    cursor = conexao.cursor()
-    execute_values(cursor, base, linhas, page_size=2000)
-    conexao.commit()
-    cursor.close()
+def inserir_em_lote(conexao, tabela, colunas, linhas):
+    if not linhas: return
+    comando=sql.SQL("INSERT INTO {} ({}) VALUES %s").format(sql.Identifier(tabela),sql.SQL(", ").join(map(sql.Identifier,colunas)))
+    with conexao.cursor() as cur:
+        execute_values(cur,comando.as_string(conexao),linhas,page_size=2000)

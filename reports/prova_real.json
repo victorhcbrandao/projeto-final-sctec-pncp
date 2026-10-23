@@ -1,0 +1,170 @@
+[
+  {
+    "controle": "Itens",
+    "obtido": "6126",
+    "esperado": "6126",
+    "ok": true
+  },
+  {
+    "controle": "Grão único",
+    "obtido": "0",
+    "esperado": "0",
+    "ok": true
+  },
+  {
+    "controle": "Contratações",
+    "obtido": "1962",
+    "esperado": "1962",
+    "ok": true
+  },
+  {
+    "controle": "Comparáveis",
+    "obtido": "5457",
+    "esperado": "5457",
+    "ok": true
+  },
+  {
+    "controle": "Sem ciclo",
+    "obtido": "230",
+    "esperado": "230",
+    "ok": true
+  },
+  {
+    "controle": "Volume homologado",
+    "obtido": "8044498805.74",
+    "esperado": "8044498805.74",
+    "ok": true
+  },
+  {
+    "controle": "Estimado comparável",
+    "obtido": "6867663469.91",
+    "esperado": "6867663469.91",
+    "ok": true
+  },
+  {
+    "controle": "Economia",
+    "obtido": "992861686.95",
+    "esperado": "992861686.95",
+    "ok": true
+  },
+  {
+    "controle": "Não comparáveis com economia preenchida",
+    "obtido": "0",
+    "esperado": "0",
+    "ok": true
+  },
+  {
+    "controle": "Sobrepreço",
+    "obtido": "27",
+    "esperado": "27",
+    "ok": true
+  },
+  {
+    "controle": "Dimensão orgao",
+    "obtido": "363",
+    "esperado": "363",
+    "ok": true
+  },
+  {
+    "controle": "PK orgao",
+    "obtido": "0",
+    "esperado": "0",
+    "ok": true
+  },
+  {
+    "controle": "FK orgao",
+    "obtido": "0",
+    "esperado": "0",
+    "ok": true
+  },
+  {
+    "controle": "Dimensão fornecedor",
+    "obtido": "2652",
+    "esperado": "2652",
+    "ok": true
+  },
+  {
+    "controle": "PK fornecedor",
+    "obtido": "0",
+    "esperado": "0",
+    "ok": true
+  },
+  {
+    "controle": "FK fornecedor",
+    "obtido": "0",
+    "esperado": "0",
+    "ok": true
+  },
+  {
+    "controle": "Dimensão modalidade",
+    "obtido": "7",
+    "esperado": "7",
+    "ok": true
+  },
+  {
+    "controle": "PK modalidade",
+    "obtido": "0",
+    "esperado": "0",
+    "ok": true
+  },
+  {
+    "controle": "FK modalidade",
+    "obtido": "0",
+    "esperado": "0",
+    "ok": true
+  },
+  {
+    "controle": "Dimensão localidade",
+    "obtido": "27",
+    "esperado": "27",
+    "ok": true
+  },
+  {
+    "controle": "PK localidade",
+    "obtido": "0",
+    "esperado": "0",
+    "ok": true
+  },
+  {
+    "controle": "FK localidade",
+    "obtido": "0",
+    "esperado": "0",
+    "ok": true
+  },
+  {
+    "controle": "Bens",
+    "obtido": "3310",
+    "esperado": "3310",
+    "ok": true
+  },
+  {
+    "controle": "Serviços",
+    "obtido": "1849",
+    "esperado": "1849",
+    "ok": true
+  },
+  {
+    "controle": "Obras e engenharia",
+    "obtido": "967",
+    "esperado": "967",
+    "ok": true
+  },
+  {
+    "controle": "Ciclo coerente",
+    "obtido": "0",
+    "esperado": "0",
+    "ok": true
+  },
+  {
+    "controle": "Publicação mínima",
+    "obtido": "2025-01-02",
+    "esperado": "2025-01-02",
+    "ok": true
+  },
+  {
+    "controle": "Publicação máxima",
+    "obtido": "2025-12-31",
+    "esperado": "2025-12-31",
+    "ok": true
+  }
+]
