@@ -1,0 +1,68 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "v0016",
+  "position": {
+    "x": 960,
+    "y": 570,
+    "width": 280,
+    "height": 45,
+    "z": 100,
+    "tabOrder": 16
+  },
+  "visual": {
+    "visualType": "actionButton",
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "text": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Fechar menu'"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "visualLink": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Bookmark'"
+                }
+              }
+            },
+            "bookmark": {
+              "expr": {
+                "Literal": {
+                  "Value": "'P1Fechar'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "isHidden": true
+}

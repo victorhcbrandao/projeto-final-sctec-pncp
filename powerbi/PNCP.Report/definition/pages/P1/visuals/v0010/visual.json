@@ -1,0 +1,68 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "v0010",
+  "position": {
+    "x": 960,
+    "y": 280,
+    "width": 280,
+    "height": 43,
+    "z": 100,
+    "tabOrder": 10
+  },
+  "visual": {
+    "visualType": "actionButton",
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "text": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'P1  Economia'"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "visualLink": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'PageNavigation'"
+                }
+              }
+            },
+            "navigationSection": {
+              "expr": {
+                "Literal": {
+                  "Value": "'P1'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "isHidden": true
+}

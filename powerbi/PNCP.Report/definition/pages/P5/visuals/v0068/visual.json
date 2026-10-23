@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "v0068",
+  "position": {
+    "x": 35,
+    "y": 635,
+    "width": 1200,
+    "height": 65,
+    "z": 0,
+    "tabOrder": 68
+  },
+  "visual": {
+    "visualType": "textbox",
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "A localização é a UF do órgão comprador; não representa necessariamente o destino do gasto.",
+                    "textStyle": {
+                      "fontSize": "14pt",
+                      "fontFamily": "Segoe UI",
+                      "color": "#142D42"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "v0034",
+  "position": {
+    "x": 35,
+    "y": 15,
+    "width": 950,
+    "height": 32,
+    "z": 0,
+    "tabOrder": 34
+  },
+  "visual": {
+    "visualType": "textbox",
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "PNCP  /  CONTROLADORIA  /  AMOSTRA 2025",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "fontFamily": "Segoe UI",
+                      "color": "#187E83"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

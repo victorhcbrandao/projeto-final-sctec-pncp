@@ -1,0 +1,41 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmarksMetadata/1.0.0/schema.json",
+  "items": [
+    {
+      "name": "P1Abrir"
+    },
+    {
+      "name": "P1Fechar"
+    },
+    {
+      "name": "P2Abrir"
+    },
+    {
+      "name": "P2Fechar"
+    },
+    {
+      "name": "P3Abrir"
+    },
+    {
+      "name": "P3Fechar"
+    },
+    {
+      "name": "P4Abrir"
+    },
+    {
+      "name": "P4Fechar"
+    },
+    {
+      "name": "P5Abrir"
+    },
+    {
+      "name": "P5Fechar"
+    },
+    {
+      "name": "P6Abrir"
+    },
+    {
+      "name": "P6Fechar"
+    }
+  ]
+}

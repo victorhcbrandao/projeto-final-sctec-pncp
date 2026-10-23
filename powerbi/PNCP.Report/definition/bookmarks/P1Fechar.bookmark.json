@@ -1,0 +1,78 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "name": "P1Fechar",
+  "displayName": "P1 Fechar menu",
+  "options": {
+    "suppressData": true,
+    "suppressActiveSection": true,
+    "applyOnlyToTargetVisuals": true,
+    "targetVisualNames": [
+      "v0010",
+      "v0011",
+      "v0012",
+      "v0013",
+      "v0014",
+      "v0015",
+      "v0016"
+    ]
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "P1",
+    "sections": {
+      "P1": {
+        "visualContainers": {
+          "v0010": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "v0011": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "v0012": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "v0013": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "v0014": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "v0015": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "v0016": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "v0088",
+  "position": {
+    "x": 35,
+    "y": 270,
+    "width": 850,
+    "height": 340,
+    "z": 0,
+    "tabOrder": 88
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "drillFilterOtherVisuals": true,
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fato_item_contratado"
+                    }
+                  },
+                  "Property": "perfil_gasto"
+                }
+              },
+              "queryRef": "fato_item_contratado.perfil_gasto"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": "Volume Homologado"
+                }
+              },
+              "queryRef": "Medidas.Volume Homologado"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'ReportPage'"
+                }
+              }
+            },
+            "section": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Tooltip'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

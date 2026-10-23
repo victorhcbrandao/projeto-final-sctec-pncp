@@ -1,0 +1,50 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "name": "P5Abrir",
+  "displayName": "P5 Abrir menu",
+  "options": {
+    "suppressData": true,
+    "suppressActiveSection": true,
+    "applyOnlyToTargetVisuals": true,
+    "targetVisualNames": [
+      "v0074",
+      "v0075",
+      "v0076",
+      "v0077",
+      "v0078",
+      "v0079",
+      "v0080"
+    ]
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "P5",
+    "sections": {
+      "P5": {
+        "visualContainers": {
+          "v0074": {
+            "singleVisual": {}
+          },
+          "v0075": {
+            "singleVisual": {}
+          },
+          "v0076": {
+            "singleVisual": {}
+          },
+          "v0077": {
+            "singleVisual": {}
+          },
+          "v0078": {
+            "singleVisual": {}
+          },
+          "v0079": {
+            "singleVisual": {}
+          },
+          "v0080": {
+            "singleVisual": {}
+          }
+        }
+      }
+    }
+  }
+}

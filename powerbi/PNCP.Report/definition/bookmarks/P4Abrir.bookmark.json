@@ -1,0 +1,50 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "name": "P4Abrir",
+  "displayName": "P4 Abrir menu",
+  "options": {
+    "suppressData": true,
+    "suppressActiveSection": true,
+    "applyOnlyToTargetVisuals": true,
+    "targetVisualNames": [
+      "v0058",
+      "v0059",
+      "v0060",
+      "v0061",
+      "v0062",
+      "v0063",
+      "v0064"
+    ]
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "P4",
+    "sections": {
+      "P4": {
+        "visualContainers": {
+          "v0058": {
+            "singleVisual": {}
+          },
+          "v0059": {
+            "singleVisual": {}
+          },
+          "v0060": {
+            "singleVisual": {}
+          },
+          "v0061": {
+            "singleVisual": {}
+          },
+          "v0062": {
+            "singleVisual": {}
+          },
+          "v0063": {
+            "singleVisual": {}
+          },
+          "v0064": {
+            "singleVisual": {}
+          }
+        }
+      }
+    }
+  }
+}

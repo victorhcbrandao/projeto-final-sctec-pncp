@@ -1,0 +1,83 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "v0072",
+  "position": {
+    "x": 35,
+    "y": 270,
+    "width": 600,
+    "height": 340,
+    "z": 0,
+    "tabOrder": 72
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "drillFilterOtherVisuals": true,
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_localidade"
+                    }
+                  },
+                  "Property": "uf_sigla"
+                }
+              },
+              "queryRef": "dim_localidade.uf_sigla"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": "Volume Homologado"
+                }
+              },
+              "queryRef": "Medidas.Volume Homologado"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'ReportPage'"
+                }
+              }
+            },
+            "section": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Tooltip'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

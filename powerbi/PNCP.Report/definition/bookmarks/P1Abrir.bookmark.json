@@ -1,0 +1,50 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "name": "P1Abrir",
+  "displayName": "P1 Abrir menu",
+  "options": {
+    "suppressData": true,
+    "suppressActiveSection": true,
+    "applyOnlyToTargetVisuals": true,
+    "targetVisualNames": [
+      "v0010",
+      "v0011",
+      "v0012",
+      "v0013",
+      "v0014",
+      "v0015",
+      "v0016"
+    ]
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "P1",
+    "sections": {
+      "P1": {
+        "visualContainers": {
+          "v0010": {
+            "singleVisual": {}
+          },
+          "v0011": {
+            "singleVisual": {}
+          },
+          "v0012": {
+            "singleVisual": {}
+          },
+          "v0013": {
+            "singleVisual": {}
+          },
+          "v0014": {
+            "singleVisual": {}
+          },
+          "v0015": {
+            "singleVisual": {}
+          },
+          "v0016": {
+            "singleVisual": {}
+          }
+        }
+      }
+    }
+  }
+}

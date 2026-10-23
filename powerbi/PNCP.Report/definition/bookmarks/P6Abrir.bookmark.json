@@ -1,0 +1,50 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "name": "P6Abrir",
+  "displayName": "P6 Abrir menu",
+  "options": {
+    "suppressData": true,
+    "suppressActiveSection": true,
+    "applyOnlyToTargetVisuals": true,
+    "targetVisualNames": [
+      "v0090",
+      "v0091",
+      "v0092",
+      "v0093",
+      "v0094",
+      "v0095",
+      "v0096"
+    ]
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "P6",
+    "sections": {
+      "P6": {
+        "visualContainers": {
+          "v0090": {
+            "singleVisual": {}
+          },
+          "v0091": {
+            "singleVisual": {}
+          },
+          "v0092": {
+            "singleVisual": {}
+          },
+          "v0093": {
+            "singleVisual": {}
+          },
+          "v0094": {
+            "singleVisual": {}
+          },
+          "v0095": {
+            "singleVisual": {}
+          },
+          "v0096": {
+            "singleVisual": {}
+          }
+        }
+      }
+    }
+  }
+}

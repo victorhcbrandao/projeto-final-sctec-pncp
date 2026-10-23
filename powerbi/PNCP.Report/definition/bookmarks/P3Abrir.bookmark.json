@@ -1,0 +1,50 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "name": "P3Abrir",
+  "displayName": "P3 Abrir menu",
+  "options": {
+    "suppressData": true,
+    "suppressActiveSection": true,
+    "applyOnlyToTargetVisuals": true,
+    "targetVisualNames": [
+      "v0042",
+      "v0043",
+      "v0044",
+      "v0045",
+      "v0046",
+      "v0047",
+      "v0048"
+    ]
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "P3",
+    "sections": {
+      "P3": {
+        "visualContainers": {
+          "v0042": {
+            "singleVisual": {}
+          },
+          "v0043": {
+            "singleVisual": {}
+          },
+          "v0044": {
+            "singleVisual": {}
+          },
+          "v0045": {
+            "singleVisual": {}
+          },
+          "v0046": {
+            "singleVisual": {}
+          },
+          "v0047": {
+            "singleVisual": {}
+          },
+          "v0048": {
+            "singleVisual": {}
+          }
+        }
+      }
+    }
+  }
+}
