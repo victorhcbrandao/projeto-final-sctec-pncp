@@ -7,7 +7,7 @@ from src import config
 def conectar(database=None):
     try:
         return psycopg2.connect(dbname=database or config.PG_DATABASE, connect_timeout=10, **config.PG_CONFIG)
-    except psycopg2.Error as exc:
+    except (psycopg2.Error, UnicodeDecodeError) as exc:
         raise RuntimeError("Falha de conexao. Confira servico, usuario, porta e senha no .env local.") from exc
 
 def preparar_banco(recriar=False):

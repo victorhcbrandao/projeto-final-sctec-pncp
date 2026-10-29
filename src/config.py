@@ -19,12 +19,15 @@ def carregar_env():
     arquivo_env = PASTA_RAIZ / ".env"
     if not arquivo_env.exists():
         return
-    for linha in arquivo_env.read_text(encoding="utf-8").splitlines():
+    for linha in arquivo_env.read_text(encoding="utf-8-sig").splitlines():
         linha = linha.strip()
         if not linha or linha.startswith("#") or "=" not in linha:
             continue
         chave, valor = linha.split("=", 1)
-        os.environ.setdefault(chave.strip(), valor.strip())
+        valor = valor.strip()
+        if len(valor) >= 2 and valor[0] == valor[-1] and valor[0] in {'"', "'"}:
+            valor = valor[1:-1]
+        os.environ.setdefault(chave.strip(), valor)
 
 
 carregar_env()
