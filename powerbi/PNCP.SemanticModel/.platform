@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "PNCP"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "14f4c16b-fdfa-4810-8b17-c55fa4065aee"
+  }
+}

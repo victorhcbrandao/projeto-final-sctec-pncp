@@ -1,17 +1,16 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "v0036",
   "position": {
     "x": 35,
     "y": 635,
-    "width": 1200,
-    "height": 65,
     "z": 0,
+    "height": 65,
+    "width": 1200,
     "tabOrder": 36
   },
   "visual": {
     "visualType": "textbox",
-    "drillFilterOtherVisuals": true,
     "objects": {
       "general": [
         {
@@ -20,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Credenciamento não entra na economia. Compare o deságio com a cobertura de itens comparáveis.",
+                    "value": "A concorrência eletrônica lidera o volume da amostra (R$ 4,70 bi) e a economia (R$ 782,07 mi). Credenciamento entra no volume, mas não no deságio.",
                     "textStyle": {
                       "fontSize": "14pt",
                       "fontFamily": "Segoe UI",
@@ -33,6 +32,7 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   }
 }

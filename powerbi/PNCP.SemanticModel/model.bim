@@ -1,9 +1,71 @@
 {
-  "name": "PNCP",
-  "compatibilityLevel": 1600,
+  "compatibilityLevel": 1606,
   "model": {
+    "annotations": [
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "0"
+      },
+      {
+        "name": "PBI_ProTooling",
+        "value": "[\"DevMode\"]"
+      },
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"dim_orgao\",\"dim_fornecedor\",\"dim_modalidade\",\"dim_localidade\",\"fato_item_contratado\"]"
+      }
+    ],
     "culture": "pt-BR",
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
     "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "relationships": [
+      {
+        "name": "71b7926d-6570-4bc5-9473-9ee15d9d8c87",
+        "fromColumn": "sk_orgao",
+        "fromTable": "fato_item_contratado",
+        "toColumn": "sk_orgao",
+        "toTable": "dim_orgao"
+      },
+      {
+        "name": "e51ef9fe-149e-41df-85dd-2e6c5ee46a33",
+        "fromColumn": "sk_fornecedor",
+        "fromTable": "fato_item_contratado",
+        "toColumn": "sk_fornecedor",
+        "toTable": "dim_fornecedor"
+      },
+      {
+        "name": "428b9854-d96b-4e5d-af26-319ef42c99be",
+        "fromColumn": "sk_modalidade",
+        "fromTable": "fato_item_contratado",
+        "toColumn": "sk_modalidade",
+        "toTable": "dim_modalidade"
+      },
+      {
+        "name": "d7789894-212b-49b1-ac5f-a76d09eac1f4",
+        "fromColumn": "sk_localidade",
+        "fromTable": "fato_item_contratado",
+        "toColumn": "sk_localidade",
+        "toTable": "dim_localidade"
+      },
+      {
+        "name": "4724c80d-fcd8-4816-8985-677bdce51315",
+        "fromColumn": "data_publicacao",
+        "fromTable": "fato_item_contratado",
+        "toColumn": "Data",
+        "toTable": "Calendario"
+      },
+      {
+        "name": "6d726be3-cec3-4cd3-b9cb-d84d16600bef",
+        "fromColumn": "data_homologacao",
+        "fromTable": "fato_item_contratado",
+        "isActive": false,
+        "toColumn": "Data",
+        "toTable": "Calendario"
+      }
+    ],
     "sourceQueryCulture": "pt-BR",
     "tables": [
       {
@@ -12,43 +74,42 @@
           {
             "name": "sk_orgao",
             "dataType": "int64",
-            "sourceColumn": "sk_orgao",
-            "summarizeBy": "none",
+            "formatString": "0",
             "isHidden": true,
-            "formatString": "0"
+            "lineageTag": "03381e6b-03c5-40ca-808e-edd818736b57",
+            "sourceColumn": "sk_orgao",
+            "summarizeBy": "none"
           },
           {
             "name": "cnpj_orgao",
             "dataType": "string",
+            "lineageTag": "2fd02fb1-35fe-4564-a455-6edf23d8eee6",
             "sourceColumn": "cnpj_orgao",
-            "summarizeBy": "none",
-            "isHidden": false,
-            "formatString": ""
+            "summarizeBy": "none"
           },
           {
             "name": "nome_orgao",
             "dataType": "string",
+            "lineageTag": "c07df4cb-d696-40b9-b657-1407dbb02ce1",
             "sourceColumn": "nome_orgao",
-            "summarizeBy": "none",
-            "isHidden": false,
-            "formatString": ""
+            "summarizeBy": "none"
           },
           {
             "name": "poder",
             "dataType": "string",
+            "lineageTag": "982a8a97-48b2-425b-9d2b-f3c7770cff8f",
             "sourceColumn": "poder",
-            "summarizeBy": "none",
-            "isHidden": false,
-            "formatString": ""
+            "summarizeBy": "none"
           }
         ],
+        "lineageTag": "b50a5893-8588-4f92-91a3-5c453e99a54a",
         "partitions": [
           {
             "name": "dim_orgao",
             "mode": "import",
             "source": {
-              "type": "m",
-              "expression": "let Fonte = PostgreSQL.Database(\"localhost:5432\", \"pncp_controladoria\", [CreateNavigationProperties=false]), Dados = Fonte{[Schema=\"public\",Item=\"dim_orgao\"]}[Data] in Dados"
+              "expression": "let Fonte = PostgreSQL.Database(\"localhost:5432\", \"pncp_controladoria\", [CreateNavigationProperties=false]), Dados = Fonte{[Schema=\"public\",Item=\"dim_orgao\"]}[Data] in Dados",
+              "type": "m"
             }
           }
         ]
@@ -59,90 +120,95 @@
           {
             "name": "sk_fornecedor",
             "dataType": "int64",
-            "sourceColumn": "sk_fornecedor",
-            "summarizeBy": "none",
+            "formatString": "0",
             "isHidden": true,
-            "formatString": "0"
+            "lineageTag": "6c2ca18c-ce76-444f-bcf4-ff6089dccdd5",
+            "sourceColumn": "sk_fornecedor",
+            "summarizeBy": "none"
           },
           {
             "name": "ni_fornecedor",
             "dataType": "string",
+            "lineageTag": "5f622062-d824-4fc2-8131-80f00519807d",
             "sourceColumn": "ni_fornecedor",
-            "summarizeBy": "none",
-            "isHidden": false,
-            "formatString": ""
+            "summarizeBy": "none"
           },
           {
             "name": "nome_fornecedor",
             "dataType": "string",
+            "lineageTag": "6ec1b66b-aac7-4c3e-a997-9a6b1909a297",
             "sourceColumn": "nome_fornecedor",
-            "summarizeBy": "none",
-            "isHidden": false,
-            "formatString": ""
+            "summarizeBy": "none"
           },
           {
             "name": "tipo_pessoa",
             "dataType": "string",
+            "lineageTag": "97092ba7-bf75-43a3-b218-0f804787711d",
             "sourceColumn": "tipo_pessoa",
-            "summarizeBy": "none",
-            "isHidden": false,
-            "formatString": ""
+            "summarizeBy": "none"
           },
           {
             "name": "porte",
             "dataType": "string",
+            "lineageTag": "780698b5-9eff-4093-8fd7-282fce287436",
             "sourceColumn": "porte",
-            "summarizeBy": "none",
-            "isHidden": false,
-            "formatString": ""
+            "summarizeBy": "none"
           }
         ],
+        "lineageTag": "156e2574-0705-4f39-aaa2-31a44423e564",
         "partitions": [
           {
             "name": "dim_fornecedor",
             "mode": "import",
             "source": {
-              "type": "m",
-              "expression": "let Fonte = PostgreSQL.Database(\"localhost:5432\", \"pncp_controladoria\", [CreateNavigationProperties=false]), Dados = Fonte{[Schema=\"public\",Item=\"dim_fornecedor\"]}[Data] in Dados"
+              "expression": "let Fonte = PostgreSQL.Database(\"localhost:5432\", \"pncp_controladoria\", [CreateNavigationProperties=false]), Dados = Fonte{[Schema=\"public\",Item=\"dim_fornecedor\"]}[Data] in Dados",
+              "type": "m"
             }
           }
         ]
       },
       {
         "name": "dim_modalidade",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
         "columns": [
           {
             "name": "sk_modalidade",
             "dataType": "int64",
-            "sourceColumn": "sk_modalidade",
-            "summarizeBy": "none",
+            "formatString": "0",
             "isHidden": true,
-            "formatString": "0"
+            "lineageTag": "fb78e2e0-3660-4142-b707-4c56c7cb0a82",
+            "sourceColumn": "sk_modalidade",
+            "summarizeBy": "none"
           },
           {
             "name": "modalidade_id",
             "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "54e6cd86-ac6f-4148-a635-e9d78f640b98",
             "sourceColumn": "modalidade_id",
-            "summarizeBy": "none",
-            "isHidden": false,
-            "formatString": "0"
+            "summarizeBy": "none"
           },
           {
             "name": "nome_modalidade",
             "dataType": "string",
+            "lineageTag": "bfea8d09-06ff-4554-a2f3-0b4f078a8801",
             "sourceColumn": "nome_modalidade",
-            "summarizeBy": "none",
-            "isHidden": false,
-            "formatString": ""
+            "summarizeBy": "none"
           }
         ],
+        "lineageTag": "c39167d0-8c30-4083-aed8-7998f5c62c97",
         "partitions": [
           {
             "name": "dim_modalidade",
             "mode": "import",
             "source": {
-              "type": "m",
-              "expression": "let Fonte = PostgreSQL.Database(\"localhost:5432\", \"pncp_controladoria\", [CreateNavigationProperties=false]), Dados = Fonte{[Schema=\"public\",Item=\"dim_modalidade\"]}[Data] in Dados"
+              "expression": "let Fonte = PostgreSQL.Database(\"localhost:5432\", \"pncp_controladoria\", [CreateNavigationProperties=false]), Dados = Fonte{[Schema=\"public\",Item=\"dim_modalidade\"]}[Data] in Dados",
+              "type": "m"
             }
           }
         ]
@@ -153,43 +219,42 @@
           {
             "name": "sk_localidade",
             "dataType": "int64",
-            "sourceColumn": "sk_localidade",
-            "summarizeBy": "none",
+            "formatString": "0",
             "isHidden": true,
-            "formatString": "0"
+            "lineageTag": "75462922-fc33-4ca5-abaa-6cebe29e047c",
+            "sourceColumn": "sk_localidade",
+            "summarizeBy": "none"
           },
           {
             "name": "uf_sigla",
             "dataType": "string",
+            "lineageTag": "e418dcf7-6e11-475d-8fc5-f9797da1e620",
             "sourceColumn": "uf_sigla",
-            "summarizeBy": "none",
-            "isHidden": false,
-            "formatString": ""
+            "summarizeBy": "none"
           },
           {
             "name": "uf_nome",
             "dataType": "string",
+            "lineageTag": "e50189e4-161f-44d6-a47a-a03823426e68",
             "sourceColumn": "uf_nome",
-            "summarizeBy": "none",
-            "isHidden": false,
-            "formatString": ""
+            "summarizeBy": "none"
           },
           {
             "name": "regiao",
             "dataType": "string",
+            "lineageTag": "80987289-1302-44a2-acf8-5f9da7062d60",
             "sourceColumn": "regiao",
-            "summarizeBy": "none",
-            "isHidden": false,
-            "formatString": ""
+            "summarizeBy": "none"
           }
         ],
+        "lineageTag": "f83af6e5-1b8a-4ef9-ac13-6d7d5b91dcc8",
         "partitions": [
           {
             "name": "dim_localidade",
             "mode": "import",
             "source": {
-              "type": "m",
-              "expression": "let Fonte = PostgreSQL.Database(\"localhost:5432\", \"pncp_controladoria\", [CreateNavigationProperties=false]), Dados = Fonte{[Schema=\"public\",Item=\"dim_localidade\"]}[Data] in Dados"
+              "expression": "let Fonte = PostgreSQL.Database(\"localhost:5432\", \"pncp_controladoria\", [CreateNavigationProperties=false]), Dados = Fonte{[Schema=\"public\",Item=\"dim_localidade\"]}[Data] in Dados",
+              "type": "m"
             }
           }
         ]
@@ -200,219 +265,301 @@
           {
             "name": "numero_controle_pncp",
             "dataType": "string",
+            "lineageTag": "1d153d33-5f22-41ad-832f-f47dec88afb6",
             "sourceColumn": "numero_controle_pncp",
-            "summarizeBy": "none",
-            "isHidden": false,
-            "formatString": ""
+            "summarizeBy": "none"
           },
           {
             "name": "numero_item",
             "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "a25a507a-dc4c-448f-a1c0-a5179b27d2c7",
             "sourceColumn": "numero_item",
-            "summarizeBy": "none",
-            "isHidden": false,
-            "formatString": "0"
+            "summarizeBy": "none"
           },
           {
             "name": "sk_orgao",
             "dataType": "int64",
-            "sourceColumn": "sk_orgao",
-            "summarizeBy": "none",
+            "formatString": "0",
             "isHidden": true,
-            "formatString": "0"
+            "lineageTag": "dfb0f78c-7052-4735-8986-83cb0d35f3a8",
+            "sourceColumn": "sk_orgao",
+            "summarizeBy": "none"
           },
           {
             "name": "sk_fornecedor",
             "dataType": "int64",
-            "sourceColumn": "sk_fornecedor",
-            "summarizeBy": "none",
+            "formatString": "0",
             "isHidden": true,
-            "formatString": "0"
+            "lineageTag": "0752b987-a122-491f-a6fd-6de4e951f533",
+            "sourceColumn": "sk_fornecedor",
+            "summarizeBy": "none"
           },
           {
             "name": "sk_modalidade",
             "dataType": "int64",
-            "sourceColumn": "sk_modalidade",
-            "summarizeBy": "none",
+            "formatString": "0",
             "isHidden": true,
-            "formatString": "0"
+            "lineageTag": "b80ffef1-2478-4663-80be-d9825ef682f3",
+            "sourceColumn": "sk_modalidade",
+            "summarizeBy": "none"
           },
           {
             "name": "sk_localidade",
             "dataType": "int64",
-            "sourceColumn": "sk_localidade",
-            "summarizeBy": "none",
+            "formatString": "0",
             "isHidden": true,
-            "formatString": "0"
+            "lineageTag": "60bdca62-54b5-494b-b609-58f824966fea",
+            "sourceColumn": "sk_localidade",
+            "summarizeBy": "none"
           },
           {
             "name": "data_publicacao",
+            "annotations": [
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
             "dataType": "dateTime",
+            "formatString": "dd/MM/yyyy",
+            "lineageTag": "0c81e694-5b3d-4eb0-af2f-117ee330d73f",
             "sourceColumn": "data_publicacao",
-            "summarizeBy": "none",
-            "isHidden": false,
-            "formatString": "dd/MM/yyyy"
+            "summarizeBy": "none"
           },
           {
             "name": "data_homologacao",
+            "annotations": [
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
             "dataType": "dateTime",
+            "formatString": "dd/MM/yyyy",
+            "lineageTag": "28d0d138-c6d0-439b-9876-93093c85090e",
             "sourceColumn": "data_homologacao",
-            "summarizeBy": "none",
-            "isHidden": false,
-            "formatString": "dd/MM/yyyy"
+            "summarizeBy": "none"
           },
           {
             "name": "descricao_item",
             "dataType": "string",
+            "lineageTag": "bf57acb3-df20-4c71-8bf4-deacdcebe32e",
             "sourceColumn": "descricao_item",
-            "summarizeBy": "none",
-            "isHidden": false,
-            "formatString": ""
+            "summarizeBy": "none"
           },
           {
             "name": "perfil_gasto",
             "dataType": "string",
+            "lineageTag": "fa6c92b9-cb0f-4172-886d-821efe6ffe5b",
             "sourceColumn": "perfil_gasto",
-            "summarizeBy": "none",
-            "isHidden": false,
-            "formatString": ""
+            "summarizeBy": "none"
           },
           {
             "name": "quantidade",
-            "dataType": "decimal",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "formatString": "#,0.00",
+            "lineageTag": "45e4e474-2495-4397-8053-c77b83d2982c",
             "sourceColumn": "quantidade",
-            "summarizeBy": "none",
-            "isHidden": false,
-            "formatString": "#,0.00"
+            "summarizeBy": "sum"
           },
           {
             "name": "valor_unitario_estimado",
-            "dataType": "decimal",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "formatString": "#,0.00",
+            "lineageTag": "7a02b5e3-4511-455c-a57f-6fffe87ca682",
             "sourceColumn": "valor_unitario_estimado",
-            "summarizeBy": "none",
-            "isHidden": false,
-            "formatString": "#,0.00"
+            "summarizeBy": "sum"
           },
           {
             "name": "valor_total_estimado",
-            "dataType": "decimal",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "formatString": "#,0.00",
+            "lineageTag": "817f9d10-aba0-470c-9529-95a92a4c1896",
             "sourceColumn": "valor_total_estimado",
-            "summarizeBy": "none",
-            "isHidden": false,
-            "formatString": "#,0.00"
+            "summarizeBy": "sum"
           },
           {
             "name": "valor_unitario_homologado",
-            "dataType": "decimal",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "formatString": "#,0.00",
+            "lineageTag": "9f4a0f46-1e0e-4e86-96d7-00099e99dab6",
             "sourceColumn": "valor_unitario_homologado",
-            "summarizeBy": "none",
-            "isHidden": false,
-            "formatString": "#,0.00"
+            "summarizeBy": "sum"
           },
           {
             "name": "valor_total_homologado",
-            "dataType": "decimal",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "formatString": "#,0.00",
+            "lineageTag": "2ab584a4-3c59-40da-8d02-b95d5c746e1f",
             "sourceColumn": "valor_total_homologado",
-            "summarizeBy": "none",
-            "isHidden": false,
-            "formatString": "#,0.00"
+            "summarizeBy": "sum"
           },
           {
             "name": "comparavel",
             "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "dcdb28fc-869b-478d-a62d-6823908dbadc",
             "sourceColumn": "comparavel",
-            "summarizeBy": "none",
-            "isHidden": false,
-            "formatString": "0"
+            "summarizeBy": "none"
           },
           {
             "name": "economia_valor",
-            "dataType": "decimal",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "double",
+            "formatString": "#,0.00",
+            "lineageTag": "5a0210e5-2b0d-4ec2-97ca-a631728be6ae",
             "sourceColumn": "economia_valor",
-            "summarizeBy": "none",
-            "isHidden": false,
-            "formatString": "#,0.00"
+            "summarizeBy": "sum"
           },
           {
             "name": "dias_ciclo",
             "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "84c61081-47c9-48e5-9a7d-31dd16fcaf64",
             "sourceColumn": "dias_ciclo",
-            "summarizeBy": "none",
-            "isHidden": false,
-            "formatString": "0"
+            "summarizeBy": "none"
+          },
+          {
+            "name": "sk_fato",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "a3c241cf-5abd-429b-b1e3-a6dd81b0dea0",
+            "sourceColumn": "sk_fato",
+            "summarizeBy": "sum"
           }
         ],
+        "lineageTag": "c0af3d14-0bdd-4f96-8040-4c07d44499c1",
         "partitions": [
           {
             "name": "fato_item_contratado",
             "mode": "import",
             "source": {
-              "type": "m",
-              "expression": "let Fonte = PostgreSQL.Database(\"localhost:5432\", \"pncp_controladoria\", [CreateNavigationProperties=false]), Dados = Fonte{[Schema=\"public\",Item=\"fato_item_contratado\"]}[Data] in Dados"
+              "expression": "let Fonte = PostgreSQL.Database(\"localhost:5432\", \"pncp_controladoria\", [CreateNavigationProperties=false]), Dados = Fonte{[Schema=\"public\",Item=\"fato_item_contratado\"]}[Data] in Dados",
+              "type": "m"
             }
           }
         ]
       },
       {
         "name": "Calendario",
-        "dataCategory": "Time",
         "columns": [
           {
             "name": "Data",
             "dataType": "dateTime",
-            "sourceColumn": "[Date]",
-            "type": "calculatedTableColumn",
-            "isKey": true,
             "formatString": "dd/MM/yyyy",
-            "summarizeBy": "none"
+            "isKey": true,
+            "isNameInferred": false,
+            "lineageTag": "aed7f7de-8cf4-4c8d-8846-cad7723eb04e",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
           },
           {
             "name": "Ano",
             "dataType": "int64",
+            "isNameInferred": false,
+            "lineageTag": "45ad8bb7-de25-46aa-af2d-cacdd8ee36fc",
             "sourceColumn": "[Ano]",
-            "type": "calculatedTableColumn",
-            "summarizeBy": "none"
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
           },
           {
             "name": "MesNumero",
             "dataType": "int64",
+            "isHidden": true,
+            "isNameInferred": false,
+            "lineageTag": "8e3cba5d-9cac-4c07-8a4e-6a6014aa5f38",
             "sourceColumn": "[MesNumero]",
-            "type": "calculatedTableColumn",
             "summarizeBy": "none",
-            "isHidden": true
+            "type": "calculatedTableColumn"
           },
           {
             "name": "Mes",
             "dataType": "string",
+            "isNameInferred": false,
+            "lineageTag": "4747bd07-f8a0-4c27-bd3b-635ad555640c",
+            "sortByColumn": "MesNumero",
             "sourceColumn": "[Mes]",
-            "type": "calculatedTableColumn",
             "summarizeBy": "none",
-            "sortByColumn": "MesNumero"
+            "type": "calculatedTableColumn"
           },
           {
             "name": "AnoMes",
             "dataType": "string",
+            "isNameInferred": false,
+            "lineageTag": "9bec4460-a72b-405b-8774-55dcf793a44c",
+            "sortByColumn": "AnoMesOrdem",
             "sourceColumn": "[AnoMes]",
-            "type": "calculatedTableColumn",
             "summarizeBy": "none",
-            "sortByColumn": "AnoMesOrdem"
+            "type": "calculatedTableColumn"
           },
           {
             "name": "AnoMesOrdem",
             "dataType": "int64",
+            "isHidden": true,
+            "isNameInferred": false,
+            "lineageTag": "259a68b5-40d9-4179-a0c0-5b4ccfc5f8f0",
             "sourceColumn": "[AnoMesOrdem]",
-            "type": "calculatedTableColumn",
             "summarizeBy": "none",
-            "isHidden": true
+            "type": "calculatedTableColumn"
           }
         ],
+        "dataCategory": "Time",
+        "lineageTag": "02262ee5-11fb-42a0-b617-4f1ad85be3c5",
         "partitions": [
           {
             "name": "Calendario",
             "mode": "import",
             "source": {
-              "type": "calculated",
-              "expression": "VAR Datas = UNION(SELECTCOLUMNS(fato_item_contratado,\"D\",fato_item_contratado[data_publicacao]),SELECTCOLUMNS(FILTER(fato_item_contratado,NOT ISBLANK(fato_item_contratado[data_homologacao])),\"D\",fato_item_contratado[data_homologacao]))\nVAR Inicio = MINX(Datas,[D])\nVAR Fim = MAXX(Datas,[D])\nRETURN ADDCOLUMNS(CALENDAR(Inicio,Fim),\"Ano\",YEAR([Date]),\"MesNumero\",MONTH([Date]),\"Mes\",FORMAT([Date],\"mmm\",\"pt-BR\"),\"AnoMes\",FORMAT([Date],\"yyyy-MM\"),\"AnoMesOrdem\",YEAR([Date])*100+MONTH([Date]))"
+              "expression": [
+                "VAR Datas = UNION(SELECTCOLUMNS(fato_item_contratado,\"D\",fato_item_contratado[data_publicacao]),SELECTCOLUMNS(FILTER(fato_item_contratado,NOT ISBLANK(fato_item_contratado[data_homologacao])),\"D\",fato_item_contratado[data_homologacao]))",
+                "VAR Inicio = MINX(Datas,[D])",
+                "VAR Fim = MAXX(Datas,[D])",
+                "RETURN ADDCOLUMNS(CALENDAR(Inicio,Fim),\"Ano\",YEAR([Date]),\"MesNumero\",MONTH([Date]),\"Mes\",FORMAT([Date],\"mmm\",\"pt-BR\"),\"AnoMes\",FORMAT([Date],\"yyyy-MM\"),\"AnoMesOrdem\",YEAR([Date])*100+MONTH([Date]))"
+              ],
+              "type": "calculated"
             }
           }
         ]
@@ -423,9 +570,197 @@
           {
             "name": "Oculta",
             "dataType": "int64",
+            "isHidden": true,
+            "isNameInferred": false,
+            "lineageTag": "15e3089d-0d94-4a9f-b359-d0615f58d608",
             "sourceColumn": "[Value]",
-            "type": "calculatedTableColumn",
-            "isHidden": true
+            "type": "calculatedTableColumn"
+          }
+        ],
+        "lineageTag": "3074f8f9-dab7-465c-985e-a63e92a562a7",
+        "measures": [
+          {
+            "name": "Valor Estimado Comparável",
+            "displayFolder": "P1 Economia",
+            "expression": "CALCULATE(SUM(fato_item_contratado[valor_total_estimado]),fato_item_contratado[comparavel]=1)",
+            "formatString": "#,0.00",
+            "lineageTag": "2386612e-0d54-4ff5-8888-2252af87d847"
+          },
+          {
+            "name": "Volume Homologado",
+            "displayFolder": "P1 Economia",
+            "expression": "SUM(fato_item_contratado[valor_total_homologado])",
+            "formatString": "#,0.00",
+            "lineageTag": "0f3a192d-82ac-41f3-849e-5584b11486a9"
+          },
+          {
+            "name": "Economia R$",
+            "displayFolder": "P1 Economia",
+            "expression": [
+              "VAR Estimado = [Valor Estimado Comparável]",
+              "VAR Homologado = CALCULATE([Volume Homologado],fato_item_contratado[comparavel]=1)",
+              "RETURN IF(ISBLANK(Estimado),BLANK(),Estimado-Homologado)"
+            ],
+            "formatString": "#,0.00",
+            "lineageTag": "2fd287fa-93cb-46b5-8100-d7c30bd5d481"
+          },
+          {
+            "name": "Economia %",
+            "displayFolder": "P1 Economia",
+            "expression": "DIVIDE([Economia R$],[Valor Estimado Comparável])",
+            "formatString": "0.00%",
+            "lineageTag": "2ce12d6c-edf2-47a6-9716-acd304be5614"
+          },
+          {
+            "name": "Itens",
+            "displayFolder": "P1 Economia",
+            "expression": "COUNTROWS(fato_item_contratado)",
+            "formatString": "#,0",
+            "lineageTag": "676a1587-acde-4257-9522-5820f58f504d"
+          },
+          {
+            "name": "% Itens Comparáveis",
+            "displayFolder": "P1 Economia",
+            "expression": "DIVIDE(CALCULATE([Itens],fato_item_contratado[comparavel]=1),[Itens])",
+            "formatString": "0.00%",
+            "lineageTag": "6d9e96fb-0bc6-487a-b454-93302a3b2f84"
+          },
+          {
+            "name": "Participação Fornecedor %",
+            "displayFolder": "P2 Fornecedores",
+            "expression": "DIVIDE([Volume Homologado],CALCULATE([Volume Homologado],REMOVEFILTERS(dim_fornecedor)))",
+            "formatString": "0.00%",
+            "lineageTag": "5ad5b788-0540-409c-9dd1-ff413e866a14"
+          },
+          {
+            "name": "Ranking Fornecedor",
+            "displayFolder": "P2 Fornecedores",
+            "expression": "RANKX(ALL(dim_fornecedor),[Volume Homologado],,DESC,Dense)",
+            "formatString": "0",
+            "lineageTag": "71739757-56a7-4c04-99e2-459ab9709f11"
+          },
+          {
+            "name": "Concentração Top10 %",
+            "displayFolder": "P2 Fornecedores",
+            "expression": [
+              "VAR Top10 = TOPN(10,ALL(dim_fornecedor),[Volume Homologado],DESC,dim_fornecedor[ni_fornecedor],ASC)",
+              "VAR VolumeTop = CALCULATE([Volume Homologado],REMOVEFILTERS(dim_fornecedor),Top10)",
+              "VAR Total = CALCULATE([Volume Homologado],REMOVEFILTERS(dim_fornecedor))",
+              "RETURN DIVIDE(VolumeTop,Total)"
+            ],
+            "formatString": "0.00%",
+            "lineageTag": "71b0dce9-e7bf-4e2d-89e3-0d9aea5a762d"
+          },
+          {
+            "name": "Volume Top10",
+            "displayFolder": "P2 Fornecedores",
+            "expression": "VAR Top10 = TOPN(10,ALL(dim_fornecedor),[Volume Homologado],DESC,dim_fornecedor[ni_fornecedor],ASC) RETURN CALCULATE([Volume Homologado],KEEPFILTERS(Top10))",
+            "formatString": "#,0.00",
+            "lineageTag": "d527830e-c5de-40c2-9db1-162399f71fc9"
+          },
+          {
+            "name": "Participação Volume %",
+            "displayFolder": "P3 Modalidades",
+            "expression": "VAR Total = SWITCH(TRUE(),ISINSCOPE(dim_modalidade[nome_modalidade]),CALCULATE([Volume Homologado],REMOVEFILTERS(dim_modalidade)),ISINSCOPE(dim_localidade[uf_sigla]),CALCULATE([Volume Homologado],REMOVEFILTERS(dim_localidade[uf_sigla])),ISINSCOPE(dim_localidade[regiao]),CALCULATE([Volume Homologado],REMOVEFILTERS(dim_localidade)),ISINSCOPE(fato_item_contratado[perfil_gasto]),CALCULATE([Volume Homologado],REMOVEFILTERS(fato_item_contratado[perfil_gasto])),CALCULATE([Volume Homologado],REMOVEFILTERS())) RETURN DIVIDE([Volume Homologado],Total)",
+            "formatString": "0.00%",
+            "lineageTag": "075b2367-0c64-459b-a7aa-9e676411c278"
+          },
+          {
+            "name": "Deságio vs Média Geral pp",
+            "displayFolder": "P3 Modalidades",
+            "expression": "VAR MediaGeral = CALCULATE([Economia %],REMOVEFILTERS()) RETURN IF(NOT ISBLANK([Economia %]),([Economia %]-MediaGeral)*100)",
+            "formatString": "0.00 \"pp\"",
+            "lineageTag": "eee4ebe2-91e2-479a-b705-d067e7d361b6"
+          },
+          {
+            "name": "Ciclo Médio (dias)",
+            "displayFolder": "P4 Ciclos",
+            "expression": "AVERAGE(fato_item_contratado[dias_ciclo])",
+            "formatString": "0.0",
+            "lineageTag": "31f4aed4-c9af-4bd0-a30b-7aff0e1aa820"
+          },
+          {
+            "name": "Ciclo Máximo (dias)",
+            "displayFolder": "P4 Ciclos",
+            "expression": "MAX(fato_item_contratado[dias_ciclo])",
+            "formatString": "0",
+            "lineageTag": "bea0f975-a43c-4ce1-8c0d-5faa629febae"
+          },
+          {
+            "name": "Itens sem Ciclo",
+            "displayFolder": "P4 Ciclos",
+            "expression": "COUNTROWS(FILTER(fato_item_contratado,ISBLANK(fato_item_contratado[dias_ciclo])))",
+            "formatString": "#,0",
+            "lineageTag": "ab2d9aeb-deeb-4a4d-880c-6758a47407a8"
+          },
+          {
+            "name": "Ciclos Válidos",
+            "displayFolder": "P4 Ciclos",
+            "expression": "COUNT(fato_item_contratado[dias_ciclo])",
+            "formatString": "#,0",
+            "lineageTag": "4875feef-f883-435c-a9ad-83f7a915e2a3"
+          },
+          {
+            "name": "Ciclo Médio Elegível",
+            "displayFolder": "P4 Ciclos",
+            "expression": "IF([Ciclos Válidos]>=5,[Ciclo Médio (dias)])",
+            "formatString": "0.0",
+            "lineageTag": "46b9e875-7f3d-462d-8621-4d34b79a4206"
+          },
+          {
+            "name": "Qtd Unidades Compradoras",
+            "displayFolder": "P5 Território",
+            "expression": "DISTINCTCOUNT(fato_item_contratado[sk_orgao])",
+            "formatString": "#,0",
+            "lineageTag": "b5dd7e94-450e-4fe4-b740-aac75d600027"
+          },
+          {
+            "name": "Ticket Médio por Item",
+            "displayFolder": "P6 Perfis",
+            "expression": "DIVIDE([Volume Homologado],[Itens])",
+            "formatString": "#,0.00",
+            "lineageTag": "fe8b9a78-36f8-4065-a6b4-55e9c9d67750"
+          },
+          {
+            "name": "Itens com Sobrepreço",
+            "displayFolder": "P1 Economia",
+            "expression": "COUNTROWS(FILTER(fato_item_contratado,fato_item_contratado[comparavel]=1 && fato_item_contratado[economia_valor]<0))",
+            "formatString": "#,0",
+            "lineageTag": "d8e8e198-2985-4e42-8b9e-9d9d0222d3d7"
+          },
+          {
+            "name": "Volume por Homologação",
+            "displayFolder": "Datas alternativas",
+            "expression": "CALCULATE([Volume Homologado],USERELATIONSHIP(Calendario[Data],fato_item_contratado[data_homologacao]))",
+            "formatString": "#,0.00",
+            "lineageTag": "d34f2456-93c6-4da0-b939-fa8a75a47c81"
+          },
+          {
+            "name": "Título Tooltip",
+            "displayFolder": "Tooltip",
+            "expression": "COALESCE(SELECTEDVALUE(dim_fornecedor[nome_fornecedor]),SELECTEDVALUE(dim_modalidade[nome_modalidade]),SELECTEDVALUE(dim_localidade[uf_sigla]),SELECTEDVALUE(fato_item_contratado[perfil_gasto]),\"Detalhes do recorte\")",
+            "lineageTag": "72defc7d-55a2-41f2-95f8-f6ab1af2668b"
+          },
+          {
+            "name": "Participação Top10 %",
+            "displayFolder": "P2 Fornecedores",
+            "expression": "DIVIDE([Volume Top10], CALCULATE([Volume Homologado], REMOVEFILTERS(dim_fornecedor)))",
+            "formatString": "0.00%",
+            "lineageTag": "959e40f0-321d-4776-bc82-b3210fc07dfe"
+          },
+          {
+            "name": "Ciclos Elegíveis",
+            "displayFolder": "P4 Ciclos",
+            "expression": "IF([Ciclos Válidos]>=5,[Ciclos Válidos])",
+            "formatString": "#,0",
+            "lineageTag": "5d3d85a1-d855-47d9-b792-064505037312"
+          },
+          {
+            "name": "Ciclo Máximo Elegível",
+            "displayFolder": "P4 Ciclos",
+            "expression": "IF([Ciclos Válidos]>=5,[Ciclo Máximo (dias)])",
+            "formatString": "0",
+            "lineageTag": "c19f68f1-b9fb-4779-a09e-5760ad5c0a36"
           }
         ],
         "partitions": [
@@ -433,203 +768,11 @@
             "name": "Medidas",
             "mode": "import",
             "source": {
-              "type": "calculated",
-              "expression": "{ 0 }"
+              "expression": "{ 0 }",
+              "type": "calculated"
             }
           }
-        ],
-        "measures": [
-          {
-            "name": "Valor Estimado Comparável",
-            "expression": "CALCULATE(SUM(fato_item_contratado[valor_total_estimado]),fato_item_contratado[comparavel]=1)",
-            "displayFolder": "P1 Economia",
-            "formatString": "#,0.00"
-          },
-          {
-            "name": "Volume Homologado",
-            "expression": "SUM(fato_item_contratado[valor_total_homologado])",
-            "displayFolder": "P1 Economia",
-            "formatString": "#,0.00"
-          },
-          {
-            "name": "Economia R$",
-            "expression": "VAR Estimado = [Valor Estimado Comparável]\nVAR Homologado = CALCULATE([Volume Homologado],fato_item_contratado[comparavel]=1)\nRETURN IF(ISBLANK(Estimado),BLANK(),Estimado-Homologado)",
-            "displayFolder": "P1 Economia",
-            "formatString": "#,0.00"
-          },
-          {
-            "name": "Economia %",
-            "expression": "DIVIDE([Economia R$],[Valor Estimado Comparável])",
-            "displayFolder": "P1 Economia",
-            "formatString": "0.00%"
-          },
-          {
-            "name": "Itens",
-            "expression": "COUNTROWS(fato_item_contratado)",
-            "displayFolder": "P1 Economia",
-            "formatString": "#,0"
-          },
-          {
-            "name": "% Itens Comparáveis",
-            "expression": "DIVIDE(CALCULATE([Itens],fato_item_contratado[comparavel]=1),[Itens])",
-            "displayFolder": "P1 Economia",
-            "formatString": "0.00%"
-          },
-          {
-            "name": "Participação Fornecedor %",
-            "expression": "DIVIDE([Volume Homologado],CALCULATE([Volume Homologado],REMOVEFILTERS(dim_fornecedor)))",
-            "displayFolder": "P2 Fornecedores",
-            "formatString": "0.00%"
-          },
-          {
-            "name": "Ranking Fornecedor",
-            "expression": "RANKX(ALL(dim_fornecedor),[Volume Homologado],,DESC,Dense)",
-            "displayFolder": "P2 Fornecedores",
-            "formatString": "0"
-          },
-          {
-            "name": "Concentração Top10 %",
-            "expression": "VAR Top10 = TOPN(10,ALL(dim_fornecedor),[Volume Homologado],DESC,dim_fornecedor[ni_fornecedor],ASC)\nVAR VolumeTop = CALCULATE([Volume Homologado],REMOVEFILTERS(dim_fornecedor),Top10)\nVAR Total = CALCULATE([Volume Homologado],REMOVEFILTERS(dim_fornecedor))\nRETURN DIVIDE(VolumeTop,Total)",
-            "displayFolder": "P2 Fornecedores",
-            "formatString": "0.00%"
-          },
-          {
-            "name": "Volume Top10",
-            "expression": "VAR Top10 = TOPN(10,ALL(dim_fornecedor),[Volume Homologado],DESC,dim_fornecedor[ni_fornecedor],ASC) RETURN CALCULATE([Volume Homologado],KEEPFILTERS(Top10))",
-            "displayFolder": "P2 Fornecedores",
-            "formatString": "#,0.00"
-          },
-          {
-            "name": "Participação Volume %",
-            "expression": "VAR Total = SWITCH(TRUE(),ISINSCOPE(dim_modalidade[nome_modalidade]),CALCULATE([Volume Homologado],REMOVEFILTERS(dim_modalidade)),ISINSCOPE(dim_localidade[uf_sigla]),CALCULATE([Volume Homologado],REMOVEFILTERS(dim_localidade[uf_sigla])),ISINSCOPE(dim_localidade[regiao]),CALCULATE([Volume Homologado],REMOVEFILTERS(dim_localidade)),ISINSCOPE(fato_item_contratado[perfil_gasto]),CALCULATE([Volume Homologado],REMOVEFILTERS(fato_item_contratado[perfil_gasto])),CALCULATE([Volume Homologado],REMOVEFILTERS())) RETURN DIVIDE([Volume Homologado],Total)",
-            "displayFolder": "P3 Modalidades",
-            "formatString": "0.00%"
-          },
-          {
-            "name": "Deságio vs Média Geral pp",
-            "expression": "VAR MediaGeral = CALCULATE([Economia %],REMOVEFILTERS()) RETURN IF(NOT ISBLANK([Economia %]),([Economia %]-MediaGeral)*100)",
-            "displayFolder": "P3 Modalidades",
-            "formatString": "0.00 \"pp\""
-          },
-          {
-            "name": "Ciclo Médio (dias)",
-            "expression": "AVERAGE(fato_item_contratado[dias_ciclo])",
-            "displayFolder": "P4 Ciclos",
-            "formatString": "0.0"
-          },
-          {
-            "name": "Ciclo Máximo (dias)",
-            "expression": "MAX(fato_item_contratado[dias_ciclo])",
-            "displayFolder": "P4 Ciclos",
-            "formatString": "0"
-          },
-          {
-            "name": "Itens sem Ciclo",
-            "expression": "COUNTROWS(FILTER(fato_item_contratado,ISBLANK(fato_item_contratado[dias_ciclo])))",
-            "displayFolder": "P4 Ciclos",
-            "formatString": "#,0"
-          },
-          {
-            "name": "Ciclos Válidos",
-            "expression": "COUNT(fato_item_contratado[dias_ciclo])",
-            "displayFolder": "P4 Ciclos",
-            "formatString": "#,0"
-          },
-          {
-            "name": "Ciclo Médio Elegível",
-            "expression": "IF([Ciclos Válidos]>=5,[Ciclo Médio (dias)])",
-            "displayFolder": "P4 Ciclos",
-            "formatString": "0.0"
-          },
-          {
-            "name": "Qtd Unidades Compradoras",
-            "expression": "DISTINCTCOUNT(fato_item_contratado[sk_orgao])",
-            "displayFolder": "P5 Território",
-            "formatString": "#,0"
-          },
-          {
-            "name": "Ticket Médio por Item",
-            "expression": "DIVIDE([Volume Homologado],[Itens])",
-            "displayFolder": "P6 Perfis",
-            "formatString": "#,0.00"
-          },
-          {
-            "name": "Itens com Sobrepreço",
-            "expression": "COUNTROWS(FILTER(fato_item_contratado,fato_item_contratado[comparavel]=1 && fato_item_contratado[economia_valor]<0))",
-            "displayFolder": "P1 Economia",
-            "formatString": "#,0"
-          },
-          {
-            "name": "Volume por Homologação",
-            "expression": "CALCULATE([Volume Homologado],USERELATIONSHIP(Calendario[Data],fato_item_contratado[data_homologacao]))",
-            "displayFolder": "Datas alternativas",
-            "formatString": "#,0.00"
-          },
-          {
-            "name": "Título Tooltip",
-            "expression": "COALESCE(SELECTEDVALUE(dim_fornecedor[nome_fornecedor]),SELECTEDVALUE(dim_modalidade[nome_modalidade]),SELECTEDVALUE(dim_localidade[uf_sigla]),SELECTEDVALUE(fato_item_contratado[perfil_gasto]),\"Detalhes do recorte\")",
-            "displayFolder": "Tooltip",
-            "formatString": ""
-          }
         ]
-      }
-    ],
-    "relationships": [
-      {
-        "name": "71b7926d-6570-4bc5-9473-9ee15d9d8c87",
-        "fromTable": "fato_item_contratado",
-        "fromColumn": "sk_orgao",
-        "toTable": "dim_orgao",
-        "toColumn": "sk_orgao",
-        "crossFilteringBehavior": "oneDirection"
-      },
-      {
-        "name": "e51ef9fe-149e-41df-85dd-2e6c5ee46a33",
-        "fromTable": "fato_item_contratado",
-        "fromColumn": "sk_fornecedor",
-        "toTable": "dim_fornecedor",
-        "toColumn": "sk_fornecedor",
-        "crossFilteringBehavior": "oneDirection"
-      },
-      {
-        "name": "428b9854-d96b-4e5d-af26-319ef42c99be",
-        "fromTable": "fato_item_contratado",
-        "fromColumn": "sk_modalidade",
-        "toTable": "dim_modalidade",
-        "toColumn": "sk_modalidade",
-        "crossFilteringBehavior": "oneDirection"
-      },
-      {
-        "name": "d7789894-212b-49b1-ac5f-a76d09eac1f4",
-        "fromTable": "fato_item_contratado",
-        "fromColumn": "sk_localidade",
-        "toTable": "dim_localidade",
-        "toColumn": "sk_localidade",
-        "crossFilteringBehavior": "oneDirection"
-      },
-      {
-        "name": "4724c80d-fcd8-4816-8985-677bdce51315",
-        "fromTable": "fato_item_contratado",
-        "fromColumn": "data_publicacao",
-        "toTable": "Calendario",
-        "toColumn": "Data",
-        "isActive": true,
-        "crossFilteringBehavior": "oneDirection"
-      },
-      {
-        "name": "6d726be3-cec3-4cd3-b9cb-d84d16600bef",
-        "fromTable": "fato_item_contratado",
-        "fromColumn": "data_homologacao",
-        "toTable": "Calendario",
-        "toColumn": "Data",
-        "isActive": false,
-        "crossFilteringBehavior": "oneDirection"
-      }
-    ],
-    "annotations": [
-      {
-        "name": "__PBI_TimeIntelligenceEnabled",
-        "value": "0"
       }
     ]
   }

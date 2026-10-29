@@ -1,17 +1,16 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "v0056",
   "position": {
     "x": 35,
     "y": 270,
-    "width": 850,
-    "height": 340,
     "z": 0,
+    "height": 340,
+    "width": 1195,
     "tabOrder": 56
   },
   "visual": {
     "visualType": "tableEx",
-    "drillFilterOtherVisuals": true,
     "query": {
       "queryState": {
         "Values": {
@@ -50,10 +49,10 @@
                       "Entity": "Medidas"
                     }
                   },
-                  "Property": "Ciclos Válidos"
+                  "Property": "Ciclos Elegíveis"
                 }
               },
-              "queryRef": "Medidas.Ciclos Válidos"
+              "queryRef": "Medidas.Ciclos Elegíveis"
             },
             {
               "field": {
@@ -63,14 +62,59 @@
                       "Entity": "Medidas"
                     }
                   },
-                  "Property": "Ciclo Máximo (dias)"
+                  "Property": "Ciclo Máximo Elegível"
                 }
               },
-              "queryRef": "Medidas.Ciclo Máximo (dias)"
+              "queryRef": "Medidas.Ciclo Máximo Elegível"
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Medidas"
+                  }
+                },
+                "Property": "Ciclo Médio Elegível"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
       }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "visualContainerObjects": {
       "visualTooltip": [
@@ -86,7 +130,7 @@
             "type": {
               "expr": {
                 "Literal": {
-                  "Value": "'ReportPage'"
+                  "Value": "'Canvas'"
                 }
               }
             },
@@ -100,6 +144,7 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   }
 }

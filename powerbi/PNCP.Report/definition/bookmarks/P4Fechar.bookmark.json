@@ -1,10 +1,8 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
-  "name": "P4Fechar",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
   "displayName": "P4 Fechar menu",
+  "name": "P4Fechar",
   "options": {
-    "suppressData": true,
-    "suppressActiveSection": true,
     "applyOnlyToTargetVisuals": true,
     "targetVisualNames": [
       "v0058",
@@ -14,10 +12,12 @@
       "v0062",
       "v0063",
       "v0064"
-    ]
+    ],
+    "suppressActiveSection": true,
+    "suppressData": true
   },
   "explorationState": {
-    "version": "1.3",
+    "version": "1.0",
     "activeSection": "P4",
     "sections": {
       "P4": {

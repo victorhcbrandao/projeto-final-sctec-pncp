@@ -1,17 +1,16 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "v0003",
   "position": {
     "x": 35,
     "y": 635,
-    "width": 1200,
-    "height": 65,
     "z": 0,
+    "height": 65,
+    "width": 1200,
     "tabOrder": 3
   },
   "visual": {
     "visualType": "textbox",
-    "drillFilterOtherVisuals": true,
     "objects": {
       "general": [
         {
@@ -20,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Economia calculada apenas sobre itens comparáveis; volume inclui todos os itens válidos.",
+                    "value": "Na amostra completa: economia de R$ 992,86 milhões (14,46%), com 89,08% dos itens comparáveis. Os filtros alteram os indicadores acima.",
                     "textStyle": {
                       "fontSize": "14pt",
                       "fontFamily": "Segoe UI",
@@ -33,6 +32,7 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   }
 }

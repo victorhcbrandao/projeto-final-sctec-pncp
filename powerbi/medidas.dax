@@ -1,3 +1,5 @@
+// Medidas explícitas do modelo PNCP
+
 Valor Estimado Comparável =
 CALCULATE(SUM(fato_item_contratado[valor_total_estimado]),fato_item_contratado[comparavel]=1)
 
@@ -69,8 +71,12 @@ CALCULATE([Volume Homologado],USERELATIONSHIP(Calendario[Data],fato_item_contrat
 Título Tooltip =
 COALESCE(SELECTEDVALUE(dim_fornecedor[nome_fornecedor]),SELECTEDVALUE(dim_modalidade[nome_modalidade]),SELECTEDVALUE(dim_localidade[uf_sigla]),SELECTEDVALUE(fato_item_contratado[perfil_gasto]),"Detalhes do recorte")
 
-Calendario =
-VAR Datas = UNION(SELECTCOLUMNS(fato_item_contratado,"D",fato_item_contratado[data_publicacao]),SELECTCOLUMNS(FILTER(fato_item_contratado,NOT ISBLANK(fato_item_contratado[data_homologacao])),"D",fato_item_contratado[data_homologacao]))
-VAR Inicio = MINX(Datas,[D])
-VAR Fim = MAXX(Datas,[D])
-RETURN ADDCOLUMNS(CALENDAR(Inicio,Fim),"Ano",YEAR([Date]),"MesNumero",MONTH([Date]),"Mes",FORMAT([Date],"mmm","pt-BR"),"AnoMes",FORMAT([Date],"yyyy-MM"),"AnoMesOrdem",YEAR([Date])*100+MONTH([Date]))
+Participação Top10 % =
+DIVIDE([Volume Top10], CALCULATE([Volume Homologado], REMOVEFILTERS(dim_fornecedor)))
+
+Ciclos Elegíveis =
+IF([Ciclos Válidos]>=5,[Ciclos Válidos])
+
+Ciclo Máximo Elegível =
+IF([Ciclos Válidos]>=5,[Ciclo Máximo (dias)])
+

@@ -1,0 +1,5 @@
+Calendario =
+VAR Datas = UNION(SELECTCOLUMNS(fato_item_contratado,"D",fato_item_contratado[data_publicacao]),SELECTCOLUMNS(FILTER(fato_item_contratado,NOT ISBLANK(fato_item_contratado[data_homologacao])),"D",fato_item_contratado[data_homologacao]))
+VAR Inicio = MINX(Datas,[D])
+VAR Fim = MAXX(Datas,[D])
+RETURN ADDCOLUMNS(CALENDAR(Inicio,Fim),"Ano",YEAR([Date]),"MesNumero",MONTH([Date]),"Mes",FORMAT([Date],"mmm","pt-BR"),"AnoMes",FORMAT([Date],"yyyy-MM"),"AnoMesOrdem",YEAR([Date])*100+MONTH([Date]))

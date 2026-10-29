@@ -1,17 +1,16 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "v0052",
   "position": {
     "x": 35,
     "y": 635,
-    "width": 1200,
-    "height": 65,
     "z": 0,
+    "height": 65,
+    "width": 1200,
     "tabOrder": 52
   },
   "visual": {
     "visualType": "textbox",
-    "drillFilterOtherVisuals": true,
     "objects": {
       "general": [
         {
@@ -20,7 +19,7 @@
               {
                 "textRuns": [
                   {
-                    "value": "Órgãos agrupados pelo nome, com pelo menos cinco ciclos válidos. Datas invertidas foram anuladas.",
+                    "value": "A UFCG apresenta o maior ciclo médio elegível: 266,3 dias em 16 itens. Datas invertidas foram anuladas; média geral de 48,1 dias.",
                     "textStyle": {
                       "fontSize": "14pt",
                       "fontFamily": "Segoe UI",
@@ -33,6 +32,7 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   }
 }

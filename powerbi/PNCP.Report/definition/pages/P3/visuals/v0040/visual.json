@@ -1,20 +1,19 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "v0040",
   "position": {
     "x": 35,
     "y": 270,
-    "width": 850,
-    "height": 340,
     "z": 0,
+    "height": 340,
+    "width": 1195,
     "tabOrder": 40
   },
   "visual": {
-    "visualType": "clusteredBarChart",
-    "drillFilterOtherVisuals": true,
+    "visualType": "tableEx",
     "query": {
       "queryState": {
-        "Category": {
+        "Values": {
           "projections": [
             {
               "field": {
@@ -28,11 +27,33 @@
                 }
               },
               "queryRef": "dim_modalidade.nome_modalidade"
-            }
-          ]
-        },
-        "Y": {
-          "projections": [
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": "Volume Homologado"
+                }
+              },
+              "queryRef": "Medidas.Volume Homologado"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": "Economia R$"
+                }
+              },
+              "queryRef": "Medidas.Economia R$"
+            },
             {
               "field": {
                 "Measure": {
@@ -45,10 +66,81 @@
                 }
               },
               "queryRef": "Medidas.Economia %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": "Participação Volume %"
+                }
+              },
+              "queryRef": "Medidas.Participação Volume %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": "Deságio vs Média Geral pp"
+                }
+              },
+              "queryRef": "Medidas.Deságio vs Média Geral pp"
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Medidas"
+                  }
+                },
+                "Property": "Economia %"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
       }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "visualContainerObjects": {
       "visualTooltip": [
@@ -64,7 +156,7 @@
             "type": {
               "expr": {
                 "Literal": {
-                  "Value": "'ReportPage'"
+                  "Value": "'Canvas'"
                 }
               }
             },
@@ -78,6 +170,95 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "ad37289e2e3640285e0c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_modalidade"
+              }
+            },
+            "Property": "nome_modalidade"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "4f68cb86c9b3705c00d3",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Volume Homologado"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "a692602c4c1c2171e2aa",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Economia R$"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "35edad295aad4270d30d",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Economia %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "9e129b92561ae3917966",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Participação Volume %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "e1e52b7c07bee3d17a98",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Medidas"
+              }
+            },
+            "Property": "Deságio vs Média Geral pp"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }
