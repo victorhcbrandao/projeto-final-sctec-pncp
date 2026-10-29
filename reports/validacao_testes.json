@@ -1,0 +1,6 @@
+{
+  "data": "2026-10-29",
+  "comando": "python -m pytest -q",
+  "resultado": "61 passed in 2.35s",
+  "falhas": 0
+}

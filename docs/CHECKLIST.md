@@ -9,11 +9,11 @@
 | Carga em lote e transação | src/carregar.py e banco.py | Validado no PostgreSQL |
 | Seis perguntas SQL | sql/02_perguntas.sql | Seis perguntas executadas |
 | Prova real Python | reports/prova_real.json | Aprovada |
-| 15+ medidas e calendário DAX | powerbi/medidas.dax e modelo | Implementado; atualizar no Desktop |
-| Seis páginas, conclusões, menu e tooltip | powerbi/PNCP.Report | Em validação visual |
-| PBIX funcional | powerbi/PNCP.pbix | Pendente |
+| 15+ medidas e calendário DAX | powerbi/medidas.dax e modelo | 25 medidas; dados atualizados no Desktop |
+| Seis páginas, conclusões, menu e tooltip | powerbi/PNCP.Report | Validado no Desktop |
+| PBIX funcional | powerbi/PNCP.pbix | Salvo com dados |
 | Diagrama e sprints no README | docs/img | Concluído |
-| Histórico Git e main | Histórico local | Em andamento |
+| Histórico Git e main | Histórico local em main | Concluído |
 | Repositório público | Link a incluir | Pendente |
 | Vídeo até 7 min com rosto e demonstrações | Link a incluir | Pendente |
 | Links testados sem autenticação e envio AVA | Conferência final | Pendente |

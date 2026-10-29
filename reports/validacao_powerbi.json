@@ -1,0 +1,22 @@
+{
+  "data_validacao": "2026-10-29",
+  "itens": 6126,
+  "volume_homologado": "8044498805.74",
+  "economia": "992861686.95",
+  "economia_percentual_exibida": "14.46",
+  "top10_percentual_exibido": "41.43",
+  "ciclo_medio_dias": "48.1",
+  "ciclo_maximo_dias": 611,
+  "itens_sem_ciclo": 230,
+  "jan_volume": "305887357.82",
+  "jan_economia": "52055575.16",
+  "calendario_marcado": true,
+  "menu_abrir_fechar_navegar": true,
+  "tooltip_contextual_DF": true,
+  "reabertura_pbix_verificada": "2026-10-29",
+  "evidencias_visuais": [
+    "docs/img/calendario_marcado.png",
+    "docs/img/menu_powerbi.png",
+    "docs/img/tooltip_powerbi.png"
+  ]
+}

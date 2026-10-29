@@ -22,6 +22,8 @@ O projeto transforma a amostra fornecida de contratações federais publicadas e
 
 Evidências: [auditoria](reports/auditoria_pipeline.json), [prova real](reports/prova_real.json) e [dicionário de inconsistências](docs/INCONSISTENCIAS.md). O percentual é a razão entre somas; não é a média dos percentuais dos itens.
 
+Em `compras.csv`, não há repetição de `numero_controle_pncp` (2.042 chaves distintas). Os formatos, nulos disfarçados e acentos quebrados são detalhados no dicionário; as contagens completas por coluna estão em `reports/auditoria_colunas.csv`.
+
 ## Arquitetura e decisões
 
 `CSV bruto → auditoria e limpeza Python → tabelas estrela → PostgreSQL → Power BI`
@@ -54,7 +56,7 @@ Preencha `.env` com suas credenciais locais; esse arquivo é ignorado pelo Git. 
 
 No pgAdmin, conecte ao banco do projeto e execute [sql/02_perguntas.sql](sql/02_perguntas.sql). As consultas também estão separadas por pergunta. Os CSVs tratados são gerados em `data/processed/`.
 
-Abra [powerbi/PNCP.pbip](powerbi/PNCP.pbip) no Desktop. O modelo aponta para `localhost:5432` e `pncp_controladoria`; ajuste o servidor caso sua instalação use outra porta. Atualize as tabelas, forneça a credencial do banco na janela do aplicativo e confira os totais. O arquivo PBIX final depende dessa atualização e da validação visual; ainda não é considerado concluído.
+Abra [powerbi/PNCP.pbip](powerbi/PNCP.pbip) no Desktop. O modelo aponta para `localhost:5432` e `pncp_controladoria`; ajuste o servidor caso sua instalação use outra porta. Atualize as tabelas, forneça a credencial do banco na janela do aplicativo e confira os totais. O [PNCP.pbix](powerbi/PNCP.pbix) foi salvo com os dados importados e permite revisar o painel sem executar a carga novamente. Para atualizar a fonte em outro computador, informe as credenciais locais no Power BI.
 
 ## Power BI e perguntas
 
@@ -67,19 +69,21 @@ Abra [powerbi/PNCP.pbip](powerbi/PNCP.pbip) no Desktop. O modelo aponta para `lo
 | P5 | Volume e economia por UF e região |
 | P6 | Composição entre obras, serviços e bens e ticket médio |
 
-As medidas explícitas estão em `Medidas`, organizadas em pastas, e em [medidas.dax](powerbi/medidas.dax). O calendário DAX deriva os limites das datas da fato. Mês e ano/mês têm colunas de ordenação. Publicação é a relação ativa; homologação é inativa e utilizada por `USERELATIONSHIP`. O calendário automático está desativado no modelo.
+As medidas explícitas estão em `Medidas`, organizadas em pastas, e em [medidas.dax](powerbi/medidas.dax). O calendário DAX deriva os limites das datas da fato. Mês e ano/mês têm colunas de ordenação. Publicação é a relação ativa; homologação é inativa e utilizada por `USERELATIONSHIP`. O calendário automático está desativado no modelo. O calendário está marcado como tabela de datas; sua expressão está em [calendario.dax](powerbi/calendario.dax). `Ranking Fornecedor` demonstra o iterador `RANKX`; economia e concentração usam `VAR`, `CALCULATE` e `DIVIDE`.
+
+No Desktop, use **Ctrl + clique** nos botões de menu e navegação (ou selecione o botão e pressione Ctrl + Enter). Passe o mouse sobre gráficos/tabelas para abrir o tooltip personalizado. As conclusões textuais descrevem a amostra completa; os indicadores respondem aos filtros.
 
 ## Planejamento
 
 ![Sprints do projeto](docs/img/sprints.png)
 
-Meta de entrega acordada: 28/10/2026. O documento menciona 03/11/2016; confirmar a data oficial no AVA. O quadro distingue etapas implementadas de validações e entregas ainda pendentes.
+Meta inicial: 28/10/2026; validação técnica concluída em 29/10/2026. O documento menciona 03/11/2016; confirmar a data oficial no AVA. O quadro distingue etapas implementadas de validações e entregas ainda pendentes.
 
 ## Validação e entrega
 
-- 61 testes Python aprovados na execução inicial; inclui os 54 casos fornecidos e a prova real integral.
+- 61 testes Python aprovados na conferência final de 29/10/2026; inclui os 54 casos fornecidos e a prova real integral.
 - Validação nativa PostgreSQL: carga confirmada, grão único e totais reconciliados; seis perguntas executadas. Evidência: [resultados SQL](reports/resultados_postgresql.json).
-- Relatório: definições implementadas; abertura, atualização, navegação e PBIX em validação.
+- Power BI: 25 medidas, seis páginas e PBIX com dados. Conferidos totais, filtro de janeiro, calendário marcado, abertura/fechamento do menu, navegação e tooltip contextual. [Evidências](reports/validacao_powerbi.json).
 - Publicação no GitHub e gravação do vídeo: pendentes.
 
 O [roteiro de defesa](docs/ROTEIRO_VIDEO.md) organiza uma apresentação de até sete minutos. **Vídeo: gravação e link público pendentes.** Atualizar este campo antes da entrega. Não enviar ao AVA enquanto os itens obrigatórios do [checklist](docs/CHECKLIST.md) estiverem pendentes.
@@ -87,3 +91,9 @@ O [roteiro de defesa](docs/ROTEIRO_VIDEO.md) organiza uma apresentação de até
 ## Melhorias futuras
 
 Carga incremental com controle de alterações, testes de regressão por recorte, classificação de itens com revisão humana, validação cadastral de documentos, monitoramento da qualidade por lote e atualização agendada do painel. A economia estimada deve ser interpretada com cautela: não comprova eficiência causal nem execução financeira.
+
+## Revisão do painel
+
+O PBIX foi reaberto no Power BI Desktop, preservando os dados e os indicadores. Evidências: [menu](docs/img/menu_powerbi.png), [tooltip contextual](docs/img/tooltip_powerbi.png) e [calendário marcado](docs/img/calendario_marcado.png).
+
+Para validar em conjunto, comece pela página Economia, teste um mês, percorra as seis páginas e compare com [RESULTADOS_SQL.md](docs/RESULTADOS_SQL.md). O [checklist](docs/CHECKLIST.md) separa a implementação concluída das pendências de publicação e entrega.
