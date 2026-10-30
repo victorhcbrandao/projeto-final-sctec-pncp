@@ -2,6 +2,10 @@
 
 Projeto final do Módulo 2 do SCTEC — análise de dados com Python, PostgreSQL e Power BI.
 
+Repositório: [projeto-final-sctec-pncp](https://github.com/victorhcbrandao/projeto-final-sctec-pncp).
+
+Acesso rápido: [painel Power BI](powerbi/PNCP.pbix), [resultados SQL](docs/RESULTADOS_SQL.md), [checklist](docs/CHECKLIST.md) e [roteiro do vídeo](docs/ROTEIRO_VIDEO.md).
+
 O projeto transforma a amostra fornecida de contratações federais publicadas em 2025 em uma base analítica para investigar economia, concentração de fornecedores, modalidades, ciclos, território e perfil do gasto. A amostra não representa todas as compras públicas do país. Volume homologado não equivale a pagamento realizado.
 
 ## Resultados reproduzidos em Python
