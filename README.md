@@ -88,7 +88,8 @@ Meta inicial: 28/10/2026; validação técnica concluída em 29/10/2026. O docum
 - 61 testes Python aprovados na conferência final de 29/10/2026; inclui os 54 casos fornecidos e a prova real integral.
 - Validação nativa PostgreSQL: carga confirmada, grão único e totais reconciliados; seis perguntas executadas. Evidência: [resultados SQL](reports/resultados_postgresql.json).
 - Power BI: 25 medidas, seis páginas e PBIX com dados. Conferidos totais, filtro de janeiro, calendário marcado, abertura/fechamento do menu, navegação e tooltip contextual. [Evidências](reports/validacao_powerbi.json).
-- Publicação no GitHub e gravação do vídeo: pendentes.
+- Repositório público verificado sem autenticação em 30/10/2026; código e histórico disponíveis na branch `main`.
+- Gravação do vídeo e envio no AVA: pendentes.
 
 O [roteiro de defesa](docs/ROTEIRO_VIDEO.md) organiza uma apresentação de até sete minutos. **Vídeo: gravação e link público pendentes.** Atualizar este campo antes da entrega. Não enviar ao AVA enquanto os itens obrigatórios do [checklist](docs/CHECKLIST.md) estiverem pendentes.
 

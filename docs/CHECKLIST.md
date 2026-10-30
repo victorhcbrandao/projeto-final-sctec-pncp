@@ -14,6 +14,7 @@
 | PBIX funcional | powerbi/PNCP.pbix | Salvo com dados |
 | Diagrama e sprints no README | docs/img | Concluído |
 | Histórico Git e main | Histórico local em main | Concluído |
-| Repositório público | Link a incluir | Pendente |
+| Repositório público | [GitHub](https://github.com/victorhcbrandao/projeto-final-sctec-pncp) | Acesso sem autenticação confirmado em 30/10/2026 |
 | Vídeo até 7 min com rosto e demonstrações | Link a incluir | Pendente |
-| Links testados sem autenticação e envio AVA | Conferência final | Pendente |
+| Link do GitHub sem autenticação | API pública e branch main | Confirmado |
+| Link do vídeo sem autenticação e envio AVA | Conferência final | Pendente |
