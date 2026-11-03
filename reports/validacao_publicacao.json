@@ -1,8 +1,11 @@
 {
-  "data": "2026-10-30",
+  "data": "2026-11-03",
   "repositorio": "https://github.com/victorhcbrandao/projeto-final-sctec-pncp",
   "consulta_sem_autenticacao": true,
   "private": false,
   "default_branch": "main",
-  "observacao": "Verificacao anterior ao commit de documentacao da publicacao. Video e AVA pendentes."
+  "video": "https://drive.google.com/file/d/1KI4VbRp8DBg23SjDjPh2lHSzWeeF2YhB/view",
+  "video_duracao_segundos": 410,
+  "video_acesso_sem_autenticacao": true,
+  "observacao": "Repositório recriado. Publicação final em andamento; envio ao AVA a confirmar."
 }
