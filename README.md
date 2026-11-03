@@ -1,12 +1,16 @@
 # PNCP · Controladoria de contratações públicas
 
-Projeto final do Módulo 2 do SCTEC — análise de dados com Python, PostgreSQL e Power BI.
+Projeto final do Módulo 2 do SCTEC, desenvolvido para transformar dados de contratações públicas em informações que apoiem a análise e o acompanhamento do gasto público.
+
+A partir de uma amostra de contratações federais publicadas em 2025, o projeto investiga seis questões: quanto foi economizado em relação aos valores estimados, quais fornecedores concentram o volume homologado, como as modalidades se diferenciam, quais órgãos apresentam os maiores ciclos de contratação, como os valores se distribuem pelo território e qual é a participação de obras, serviços e bens.
+
+A solução integra **Python**, para auditoria e tratamento dos arquivos; **PostgreSQL**, para armazenamento em modelo dimensional e consultas SQL; e **Power BI**, para exploração dos resultados em seis páginas interativas. As regras de tratamento, os testes e as evidências de validação documentam o percurso dos dados, desde os CSVs originais até os indicadores do painel.
+
+A base tratada reúne **6.126 itens de 1.962 contratações**, com aproximadamente **R$ 8,04 bilhões em volume homologado**. Os resultados se limitam à amostra fornecida: volume homologado não representa pagamento realizado, e a economia calculada considera somente os itens que atendem às regras de comparabilidade.
 
 Repositório: [projeto-final-sctec-pncp](https://github.com/victorhcbrandao/projeto-final-sctec-pncp).
 
-Acesso rápido: [painel Power BI](powerbi/PNCP.pbix), [resultados SQL](docs/RESULTADOS_SQL.md), [checklist](docs/CHECKLIST.md) e [roteiro do vídeo](docs/ROTEIRO_VIDEO.md).
-
-O projeto transforma a amostra fornecida de contratações federais publicadas em 2025 em uma base analítica para investigar economia, concentração de fornecedores, modalidades, ciclos, território e perfil do gasto. A amostra não representa todas as compras públicas do país. Volume homologado não equivale a pagamento realizado.
+Acesso rápido: [painel Power BI](powerbi/PNCP.pbix), [resultados SQL](docs/RESULTADOS_SQL.md) e [checklist](docs/CHECKLIST.md).
 
 ## Resultados reproduzidos em Python
 
@@ -152,7 +156,7 @@ Meta inicial: 28/10/2026; validação técnica concluída em 29/10/2026. O docum
 - Repositório público verificado sem autenticação em 30/10/2026; código e histórico disponíveis na branch `main`.
 - Gravação do vídeo e envio no AVA: pendentes.
 
-O [roteiro de defesa](docs/ROTEIRO_VIDEO.md) organiza uma apresentação de até sete minutos. **Vídeo: gravação e link público pendentes.** Atualizar este campo antes da entrega. Não enviar ao AVA enquanto os itens obrigatórios do [checklist](docs/CHECKLIST.md) estiverem pendentes.
+O [checklist](docs/CHECKLIST.md) registra os requisitos concluídos e as pendências para a entrega final.
 
 ## Melhorias futuras
 
