@@ -156,7 +156,6 @@ Meta inicial: 28/10/2026; validação técnica em 29/10/2026 e revisão final em
 - Validação nativa PostgreSQL registrada em 29/10/2026: carga confirmada, grão único e totais reconciliados; seis perguntas executadas. Evidência: [resultados SQL](reports/resultados_postgresql.json).
 - Power BI: 25 medidas, seis páginas e PBIX com dados. Conferidos totais, filtro de janeiro, calendário marcado, abertura/fechamento do menu, navegação e tooltip contextual. [Evidências](reports/validacao_powerbi.json).
 - Repositório público com código e histórico na branch `main`; mensagens dos commits descrevem as alterações sem prefixos técnicos.
-- [Vídeo final](https://drive.google.com/file/d/1KI4VbRp8DBg23SjDjPh2lHSzWeeF2YhB/view): 6min50s, Full HD, acesso conferido sem autenticação em 03/11/2026. Envio no AVA: a confirmar pelo responsável.
 
 A nova execução local confirmou os 54 exemplos fornecidos, os 28 controles da prova real e a integridade dos CSVs originais. A reconexão ao PostgreSQL em 03/11 não foi concluída com a configuração local disponível; as evidências anteriores foram preservadas.
 
