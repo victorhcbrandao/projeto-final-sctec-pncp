@@ -148,7 +148,7 @@ No Desktop, use **Ctrl + clique** nos botões de menu e navegação (ou selecion
 
 ![Sprints do projeto](docs/img/sprints.png)
 
-Meta inicial: 28/10/2026; validação técnica em 29/10/2026 e revisão final em 03/11/2026. O quadro registra os objetivos, tarefas, períodos e situação de cada etapa. A confirmação do envio no AVA cabe ao responsável pela entrega.
+Meta inicial: 28/10/2026; validação técnica em 29/10/2026 e revisão final em 03/11/2026. O quadro registra os objetivos, tarefas, períodos e situação de cada etapa.
 
 ## Validação e entrega
 
