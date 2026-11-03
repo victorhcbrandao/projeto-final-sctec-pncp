@@ -10,7 +10,7 @@ A base tratada reúne **6.126 itens de 1.962 contratações**, com aproximadamen
 
 Repositório: [projeto-final-sctec-pncp](https://github.com/victorhcbrandao/projeto-final-sctec-pncp).
 
-Acesso rápido: [painel Power BI](powerbi/PNCP.pbix), [resultados SQL](docs/RESULTADOS_SQL.md) e [checklist](docs/CHECKLIST.md).
+Acesso rápido: [painel Power BI](powerbi/PNCP.pbix), [resultados SQL](docs/RESULTADOS_SQL.md) e [vídeo de apresentação — 6min50s](https://drive.google.com/file/d/1KI4VbRp8DBg23SjDjPh2lHSzWeeF2YhB/view).
 
 ## Resultados reproduzidos em Python
 
@@ -32,6 +32,8 @@ Evidências: [auditoria](reports/auditoria_pipeline.json), [prova real](reports/
 
 Em `compras.csv`, não há repetição de `numero_controle_pncp` (2.042 chaves distintas). Os formatos, nulos disfarçados e acentos quebrados são detalhados no dicionário; as contagens completas por coluna estão em `reports/auditoria_colunas.csv`.
 
+As 99 rejeições consideram apenas o primeiro motivo por item: 59 totais estimados inferiores a R$ 1; 23 valores unitários estimados ausentes ou não positivos; 7 homologados acima de mil vezes o estimado; 6 unitários homologados ausentes ou não positivos; 3 totais acima de R$ 1 trilhão; e 1 quantidade ausente ou não positiva. Os 852 itens sem resultado elegível são contabilizados separadamente.
+
 ## Arquitetura e decisões
 
 `CSV bruto → auditoria e limpeza Python → tabelas estrela → PostgreSQL → Power BI`
@@ -40,7 +42,7 @@ Em `compras.csv`, não há repetição de `numero_controle_pncp` (2.042 chaves d
 
 O grão é um item por contratação: `(numero_controle_pncp, numero_item)`. Resultados cancelados saem antes da seleção pela menor ordem de classificação e, no empate, pelo menor sequencial numérico. A quantidade homologada positiva prevalece; na sua ausência, utiliza-se a quantidade do item. A mesma quantidade calcula os dois totais, arredondados a centavos.
 
-São comparáveis os itens fora da modalidade 12 com razão homologado/estimado entre 0,1 e 10, inclusive. Economia pode ser negativa. Para os não comparáveis, `economia_valor` fica NULL: essa escolha atende à seção 4.3 do enunciado, apesar do zero sugerido no roteiro-base. Credenciamento continua no volume total.
+São comparáveis os itens fora da modalidade 12 com razão homologado/estimado entre 0,1 e 10, inclusive. Economia pode ser negativa. Para os não comparáveis, `economia_valor` fica NULL: essa escolha atende à seção 4.3 do enunciado. Credenciamento continua no volume total.
 
 Homologação anterior à publicação vira NULL sem excluir o item. Ciclo zero no mesmo dia é válido. Órgãos são dimensionados por CNPJ; a pergunta 4 agrupa pelo nome e exige cinco ciclos válidos. Obras têm prioridade na classificação por palavras inteiras; depois vêm serviços e bens. Todas as 27 UFs são mapeadas para região.
 
@@ -146,17 +148,17 @@ No Desktop, use **Ctrl + clique** nos botões de menu e navegação (ou selecion
 
 ![Sprints do projeto](docs/img/sprints.png)
 
-Meta inicial: 28/10/2026; validação técnica concluída em 29/10/2026. O documento menciona 03/11/2016; confirmar a data oficial no AVA. O quadro distingue etapas implementadas de validações e entregas ainda pendentes.
+Meta inicial: 28/10/2026; validação técnica em 29/10/2026 e revisão final em 03/11/2026. O quadro registra os objetivos, tarefas, períodos e situação de cada etapa. A confirmação do envio no AVA cabe ao responsável pela entrega.
 
 ## Validação e entrega
 
-- 61 testes Python aprovados na conferência final de 29/10/2026; inclui os 54 casos fornecidos e a prova real integral.
-- Validação nativa PostgreSQL: carga confirmada, grão único e totais reconciliados; seis perguntas executadas. Evidência: [resultados SQL](reports/resultados_postgresql.json).
+- 61 testes Python aprovados novamente em 03/11/2026; inclui os 54 casos fornecidos e a prova real integral.
+- Validação nativa PostgreSQL registrada em 29/10/2026: carga confirmada, grão único e totais reconciliados; seis perguntas executadas. Evidência: [resultados SQL](reports/resultados_postgresql.json).
 - Power BI: 25 medidas, seis páginas e PBIX com dados. Conferidos totais, filtro de janeiro, calendário marcado, abertura/fechamento do menu, navegação e tooltip contextual. [Evidências](reports/validacao_powerbi.json).
-- Repositório público verificado sem autenticação em 30/10/2026; código e histórico disponíveis na branch `main`.
-- Gravação do vídeo e envio no AVA: pendentes.
+- Repositório público com código e histórico na branch `main`; mensagens dos commits descrevem as alterações sem prefixos técnicos.
+- [Vídeo final](https://drive.google.com/file/d/1KI4VbRp8DBg23SjDjPh2lHSzWeeF2YhB/view): 6min50s, Full HD, acesso conferido sem autenticação em 03/11/2026. Envio no AVA: a confirmar pelo responsável.
 
-O [checklist](docs/CHECKLIST.md) registra os requisitos concluídos e as pendências para a entrega final.
+A nova execução local confirmou os 54 exemplos fornecidos, os 28 controles da prova real e a integridade dos CSVs originais. A reconexão ao PostgreSQL em 03/11 não foi concluída com a configuração local disponível; as evidências anteriores foram preservadas.
 
 ## Melhorias futuras
 
@@ -166,4 +168,4 @@ Carga incremental com controle de alterações, testes de regressão por recorte
 
 O PBIX foi reaberto no Power BI Desktop, preservando os dados e os indicadores. Evidências: [menu](docs/img/menu_powerbi.png), [tooltip contextual](docs/img/tooltip_powerbi.png) e [calendário marcado](docs/img/calendario_marcado.png).
 
-Para validar em conjunto, comece pela página Economia, teste um mês, percorra as seis páginas e compare com [RESULTADOS_SQL.md](docs/RESULTADOS_SQL.md). O [checklist](docs/CHECKLIST.md) separa a implementação concluída das pendências de publicação e entrega.
+Para validar em conjunto, comece pela página Economia, teste um mês, percorra as seis páginas e compare com [RESULTADOS_SQL.md](docs/RESULTADOS_SQL.md).
