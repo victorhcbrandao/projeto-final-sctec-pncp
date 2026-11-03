@@ -146,7 +146,7 @@ No Desktop, use **Ctrl + clique** nos botões de menu e navegação (ou selecion
 
 ## Planejamento
 
-![Sprints do projeto — entrega concluída](docs/img/sprints.png?v=5e5e7c5)
+![Sprints do projeto — entrega concluída](docs/img/sprints-entrega-concluida.png)
 
 Meta inicial: 28/10/2026; validação técnica em 29/10/2026 e revisão final em 03/11/2026. O quadro registra os objetivos, tarefas, períodos e situação de cada etapa.
 
